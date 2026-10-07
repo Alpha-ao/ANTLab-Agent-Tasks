@@ -1,4 +1,4 @@
-# Paper Agent 招募考核（候选人版 v1.2.1）
+# ANTLab Agent Tasks
 
 文档阅读与信息核验方向 Agent 项目的应用层开发者招募考核：先完成基础题，再从进阶 A/B/C 中选择一套完成。
 
