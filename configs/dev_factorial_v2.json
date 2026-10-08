@@ -1,0 +1,171 @@
+{
+  "utc": "2026-10-08T15:23:00.920701+00:00",
+  "stage": "dev",
+  "notice": "exploratory; original evaluation already observed; not blind validation",
+  "hashes": {
+    "基础/starter/student.py": "9de56a07cc25a02a749dc0b49a7723fb0fd76563fd664ba258c03d7493c0d705",
+    "基础/starter/student_v2.py": "68b87b40ed7e1e8032b38f9b10bbc41015008d5f8230c0840726c7a3dee220a2",
+    "基础/starter/provider.py": "b573f2359ad7e7a2818f9c8ba07952d4d7bfb2854a6d7e14b509da27dcf9c761",
+    "scripts/explore.py": "8803da5d29b74cf4782adba780b91bdc1f73ffe568cdbbb1904c8d91e2dce3d0"
+  },
+  "jobs": [
+    [
+      "D02",
+      "R0",
+      "baseline",
+      "original"
+    ],
+    [
+      "D03",
+      "R0",
+      "baseline",
+      "v2_thinking"
+    ],
+    [
+      "D04",
+      "R0",
+      "baseline",
+      "original"
+    ],
+    [
+      "D03",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "D01",
+      "R0",
+      "baseline",
+      "original"
+    ],
+    [
+      "D03",
+      "R0",
+      "baseline",
+      "thinking"
+    ],
+    [
+      "D04",
+      "R0",
+      "baseline",
+      "v2_thinking"
+    ],
+    [
+      "D04",
+      "R0",
+      "baseline",
+      "thinking"
+    ],
+    [
+      "D03",
+      "R0",
+      "baseline",
+      "original"
+    ],
+    [
+      "D01",
+      "R0",
+      "baseline",
+      "v2_thinking"
+    ],
+    [
+      "D01",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "D02",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "D01",
+      "R0",
+      "baseline",
+      "thinking"
+    ],
+    [
+      "D02",
+      "R0",
+      "baseline",
+      "v2_thinking"
+    ],
+    [
+      "D04",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "D02",
+      "R0",
+      "baseline",
+      "thinking"
+    ]
+  ],
+  "configs": {
+    "original": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "parameters": {
+        "temperature": 0,
+        "max_tokens": 512,
+        "thinking": {
+          "type": "disabled"
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "timeout_seconds": 90
+    },
+    "v2": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "parameters": {
+        "temperature": 0,
+        "max_tokens": 512,
+        "thinking": {
+          "type": "disabled"
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "timeout_seconds": 90
+    },
+    "thinking": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "parameters": {
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "enabled"
+        },
+        "reasoning_effort": "low",
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "timeout_seconds": 120
+    },
+    "v2_thinking": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "parameters": {
+        "max_tokens": 4096,
+        "thinking": {
+          "type": "enabled"
+        },
+        "reasoning_effort": "low",
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "timeout_seconds": 120
+    }
+  }
+}

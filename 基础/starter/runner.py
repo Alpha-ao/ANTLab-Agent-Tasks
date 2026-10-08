@@ -25,7 +25,8 @@ def prepare(cid, condition, variant):
     selected=copy.deepcopy(original)
     if variant=='improved':
         selected=student.improve(c['question'],selected)
-        if not isinstance(selected,list) or any(not isinstance(p,dict) or p.get('id') not in by_id or p != by_id[p['id']] for p in selected):
+        visible_by_id={p['id']:p for p in original}
+        if not isinstance(selected,list) or any(not isinstance(p,dict) or p.get('id') not in visible_by_id or p != visible_by_id[p['id']] for p in selected):
             raise ValueError('默认接口要求改进仅重排/选择原始段落；扩展格式须自己实现并披露')
         if len({p['id'] for p in selected})!=len(selected): raise ValueError('重复证据块')
     msgs=student.prepare_messages(c['question'],copy.deepcopy(selected))
@@ -37,7 +38,7 @@ def execute(cid,condition,variant,config,*,mock=False,dry=False,outdir=None):
     record={'schema_version':1,'run_id':str(uuid.uuid4()),'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'case_id':cid,'split':c['split'],'condition':condition,'variant':variant,
             'mode':'dry' if dry else ('mock' if mock else 'paid'),
-            'config':copy.deepcopy(config), 'data_sha256':digest((BASE/'data/cases.json').read_bytes()), 'dataset_version':json.loads((BASE/'data/manifest.json').read_text(encoding='utf-8'))['version'],
+            'config':{k:copy.deepcopy(v) for k,v in config.items() if k!='endpoint'}, 'data_sha256':digest((BASE/'data/cases.json').read_bytes()), 'dataset_version':json.loads((BASE/'data/manifest.json').read_text(encoding='utf-8'))['version'],
             'student_sha256':digest((BASE/'starter/student.py').read_bytes()),
             'original_passage_ids':[p['id'] for p in original],
             'selected_passage_ids':[p['id'] for p in selected], 'messages':msgs,

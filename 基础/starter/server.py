@@ -15,6 +15,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200);self.send_header('Content-Type','text/html; charset=utf-8');self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
         elif self.path=='/api/cases':
             self.reply(200,[{'id':c['id'],'split':c['split'],'question':c['question']} for c in cases()])
+        elif self.path=='/api/results':
+            folder=BASE.parent/'runs/basic'
+            rows=[json.loads(p.read_text(encoding='utf-8')) for p in folder.glob('*/*.json')]
+            self.reply(200,sorted(rows,key=lambda r:r['utc']))
         else:self.reply(404,{'error':'not found'})
     def do_POST(self):
         if self.path!='/api/run':return self.reply(404,{'error':'not found'})

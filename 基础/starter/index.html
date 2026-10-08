@@ -1,13 +1,23 @@
 <!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>上下文实验起始台</title>
 <style>body{font:16px system-ui;max-width:1000px;margin:35px auto;padding:20px;color:#182330}select,button{padding:10px;margin:5px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f1f4f7;padding:20px}small{color:#546273}</style>
-<h1>上下文实验起始台</h1><p>这是骨架，不是完成的作业。先实现 student.py。预览不调用模型；模拟结果不能作实验证据。</p>
+<h1>上下文实验起始台</h1><p>文档核验基础实验。预览不调用模型；真实记录与离线预览分开。引用存在不代表答案正确。</p>
 <label>样例<select id="case"></select></label><label>条件<select id="condition"><option>R0</option><option>R1</option><option>R2</option><option>K</option><option>E</option></select></label>
 <label>版本<select id="variant"><option value="baseline">基线</option><option value="improved">改进</option></select></label>
 <label>模式<select id="mode"><option value="dry">仅预览</option><option value="mock">模拟联通</option><option value="paid">自费API</option></select></label>
 <button id="run">执行一次</button><p id="status" role="status"></p><pre id="result">等待输入。请自行补充对照结果呈现与分析。</pre>
-<script>
+<h2>已有真实运行记录</h2><p>选择样例后查看基线和改进，展开记录可检查实际原文与原始响应。语义支持仍需逐例复核。</p><button id="refresh">刷新记录</button><div id="history"></div><script>
 const $=id=>document.getElementById(id);
 fetch('/api/cases').then(r=>r.json()).then(xs=>xs.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.id+' '+c.question;$('case').append(o)}));
-$('run').onclick=async()=>{if($('mode').value==='paid'&&!confirm('本次将发起一次自费API请求，是否继续？'))return;
+async function history(){
+ const all=await (await fetch('/api/results')).json(); const box=$('history'); box.replaceChildren();
+ for(const r of all.filter(x=>x.case_id===$('case').value)){
+  const d=document.createElement('details'),s=document.createElement('summary'),p=document.createElement('pre');
+  const content=r.response?.choices?.[0]?.message?.content || '(无回答)';
+  s.textContent=r.condition+' / '+r.variant+' / '+r.status+' / '+r.elapsed_seconds?.toFixed(2)+'秒 — '+content;
+  p.textContent=JSON.stringify(r,null,2);d.append(s,p);box.append(d);
+ }
+}
+$('refresh').onclick=history;$('case').onchange=history;
+$('run').onclick=async()=>{
 $('run').disabled=true;$('status').textContent='处理中…';try{const r=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json','X-Assessment-Session':'__SESSION_TOKEN__'},body:JSON.stringify({case_id:$('case').value,condition:$('condition').value,variant:$('variant').value,mode:$('mode').value})});const data=await r.json();$('result').textContent=JSON.stringify(data,null,2);$('status').textContent=r.ok?'结果已保存，是否正确仍需核验':'执行未完成';}catch(e){$('status').textContent=String(e)}finally{$('run').disabled=false}};
 </script></html>

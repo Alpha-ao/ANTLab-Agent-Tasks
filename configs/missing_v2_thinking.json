@@ -1,0 +1,5 @@
+{
+  "utc": "2026-10-08T15:37:13.970737+00:00",
+  "prediction": "M04 and M05 both abstain; no current denominator can be recovered.",
+  "reason": "M01 was not clean: 56+14+10 supplies a possible denominator. Retain as ambiguous instead of calling model wrong."
+}

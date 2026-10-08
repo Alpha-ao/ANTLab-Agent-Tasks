@@ -1,0 +1,158 @@
+{
+  "H01": {
+    "answer": "70%",
+    "evidence_ids": [
+      "BLOCK-612782",
+      "BLOCK-843518"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "石桥项目R12在2026-10审计批次AZ91固定80项为分母，技术失败不能剔除。",
+      "AZ91复核有56项完全支持、14项部分支持、10项失败；完整支持只计完全支持。"
+    ]
+  },
+  "H02": {
+    "answer": "30%",
+    "evidence_ids": [
+      "BLOCK-798745",
+      "BLOCK-989550"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "星湖项目R2在2026-11首次执行BH24有50项，35项合法结果，9项超时，6项格式错误。",
+      "BH24规定超时和格式错误都属于技术失败，分母为全部首次任务，重试不能替换。"
+    ]
+  },
+  "H03": {
+    "answer": "3.8",
+    "evidence_ids": [
+      "BLOCK-597597",
+      "BLOCK-927446"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "南岭项目R10在2026-12同机实验CL83，甲处理中位数12.7秒。",
+      "CL83乙同样输入中位数8.9秒，模型、输出上限和请求条件相同。"
+    ]
+  },
+  "H04": {
+    "answer": "乙",
+    "evidence_ids": [
+      "BLOCK-705166",
+      "BLOCK-954967"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "新港项目R8在2026-09表DK52：甲支持率92%、耗时9秒、调用2次；乙88%、6秒、3次；丙84%、5秒、1次。",
+      "DK52先要求支持率至少85%、耗时不超过7秒，再在合格者中最少调用。"
+    ]
+  },
+  "H05": {
+    "answer": "X1",
+    "evidence_ids": [
+      "BLOCK-890289",
+      "BLOCK-215222"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "平原项目R4在2026-08表EN61：X1三项检查全通过且没有遗留问题；X2速度更快但恢复失败；X3定位失败。",
+      "EN61要求文本、定位、恢复全部通过且没有遗留问题，速度不用于放宽条件。"
+    ]
+  },
+  "H06": {
+    "answer": "证据不足",
+    "evidence_ids": [
+      "BLOCK-296347",
+      "BLOCK-971189"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "雪松项目R7在2026-07批次FP22，平均耗时2秒，输出50个token。",
+      "FP22未采集任何功率或能耗，也未记录推理硬件，账单以token计费。"
+    ]
+  },
+  "H07": {
+    "answer": "证据不足",
+    "evidence_ids": [
+      "BLOCK-270773",
+      "BLOCK-341324"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "远山项目R11在2026-06批次GQ48在zone-a经共享网关调用，模型显示名M。",
+      "GQ48只保存客户端延迟和状态，没有硬件型号或节点遥测。"
+    ]
+  },
+  "H08": {
+    "answer": "乙",
+    "evidence_ids": [
+      "BLOCK-545749",
+      "BLOCK-810256"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "竹海项目R5在2026-05表HR92：甲成功率90%、错误2次、预算900；乙90%、错误1次、预算1100；丙95%、错误0次、预算1500。",
+      "HR92要求成功率至少90%、错误不超过1次，然后在合格配置里选预算最低者。"
+    ]
+  },
+  "H09": {
+    "answer": "75%",
+    "evidence_ids": [
+      "BLOCK-443132",
+      "BLOCK-122722"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "大河项目R3在2026-04冻结批次JS27有120条主张，12条无响应也保留在分母。",
+      "JS27有90条完全支持，18条部分支持，12条无响应；只有完全支持计入分子。"
+    ]
+  },
+  "H10": {
+    "answer": "无合格方案",
+    "evidence_ids": [
+      "BLOCK-282028",
+      "BLOCK-909083"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "林泉项目R6在2026-03表KT35：甲支持率91%、耗时9秒；乙84%、6秒；丙89%、8秒。",
+      "KT35同时要求支持率至少90%、耗时不超过7秒；没有合格方案时回答“无合格方案”。"
+    ]
+  },
+  "H11": {
+    "answer": "证据不足",
+    "evidence_ids": [
+      "BLOCK-575202",
+      "BLOCK-147652"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "明湾项目R9在2026-02正式批次LU64固定40项。",
+      "LU64同一签署版本有两份未仲裁记录：一份称20项通过，另一份称28项通过；两份都标为当前有效。"
+    ]
+  },
+  "H12": {
+    "answer": "-1.3",
+    "evidence_ids": [
+      "BLOCK-519266",
+      "BLOCK-722766"
+    ],
+    "provenance": "AI-authored synthetic task; source sentences and explicit arithmetic/threshold rule",
+    "human_review": "pending",
+    "basis": [
+      "云谷项目R2在2026-01批次MV13甲耗时6.2秒。",
+      "MV13同条件乙耗时7.5秒；“乙比甲少”按甲减乙计算，可以为负。"
+    ]
+  }
+}

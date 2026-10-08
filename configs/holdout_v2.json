@@ -1,0 +1,174 @@
+{
+  "utc": "2026-10-08T15:25:35.454244+00:00",
+  "stage": "holdout",
+  "notice": "exploratory; original evaluation already observed; not blind validation",
+  "hashes": {
+    "基础/starter/student.py": "9de56a07cc25a02a749dc0b49a7723fb0fd76563fd664ba258c03d7493c0d705",
+    "基础/starter/student_v2.py": "68b87b40ed7e1e8032b38f9b10bbc41015008d5f8230c0840726c7a3dee220a2",
+    "基础/starter/provider.py": "b573f2359ad7e7a2818f9c8ba07952d4d7bfb2854a6d7e14b509da27dcf9c761",
+    "scripts/explore.py": "8803da5d29b74cf4782adba780b91bdc1f73ffe568cdbbb1904c8d91e2dce3d0"
+  },
+  "jobs": [
+    [
+      "H09",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H01",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H10",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H09",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H05",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H02",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H07",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H05",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H03",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H06",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H11",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H07",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H10",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H08",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H01",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H04",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H12",
+      "R0",
+      "improved",
+      "v2"
+    ],
+    [
+      "H12",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H02",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H06",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H03",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H08",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H04",
+      "R0",
+      "baseline",
+      "v2"
+    ],
+    [
+      "H11",
+      "R0",
+      "improved",
+      "v2"
+    ]
+  ],
+  "configs": {
+    "v2": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "parameters": {
+        "temperature": 0,
+        "max_tokens": 512,
+        "thinking": {
+          "type": "disabled"
+        },
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "timeout_seconds": 90
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "utc": "2026-10-08T15:34:35.731321+00:00",
+  "prediction": "All full cases retain answers; M01-03 abstain, not borrow other batches.",
+  "run_kind": "exploratory stress, not independent benchmark",
+  "jobs": [
+    "L03",
+    "L05",
+    "L11",
+    "L06",
+    "L12",
+    "M03",
+    "L04",
+    "L07",
+    "L01",
+    "M02",
+    "L02",
+    "M01",
+    "L09",
+    "L08",
+    "L10"
+  ],
+  "hashes": {
+    "基础/starter/student_v2.py": "68b87b40ed7e1e8032b38f9b10bbc41015008d5f8230c0840726c7a3dee220a2",
+    "scripts/explore.py": "8803da5d29b74cf4782adba780b91bdc1f73ffe568cdbbb1904c8d91e2dce3d0",
+    "tests/data/stress.json": "03c0f72ca49ef15c7cc7141a945af9c12667d2b45f15fffb557cfff38582439e"
+  }
+}

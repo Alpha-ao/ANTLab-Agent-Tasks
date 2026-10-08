@@ -1,0 +1,46 @@
+{
+  "utc": "2026-10-08T09:50:55.923512+00:00",
+  "jobs": [
+    [
+      "D02",
+      "R0",
+      "baseline"
+    ],
+    [
+      "D04",
+      "R0",
+      "baseline"
+    ],
+    [
+      "D03",
+      "R0",
+      "improved"
+    ],
+    [
+      "D04",
+      "R0",
+      "improved"
+    ],
+    [
+      "D01",
+      "R0",
+      "improved"
+    ],
+    [
+      "D02",
+      "R0",
+      "improved"
+    ],
+    [
+      "D01",
+      "R0",
+      "baseline"
+    ],
+    [
+      "D03",
+      "R0",
+      "baseline"
+    ]
+  ],
+  "prediction": "Improved keeps all evidence; grouping may help or have no effect. K may lose cross-record evidence."
+}

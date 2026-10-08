@@ -1,0 +1,25 @@
+{
+  "prediction_file": "results/diagnostic_plan.md",
+  "run_ids": [
+    "3a4c6191-f66c-4e64-8875-de6e280383a2",
+    "02e91ddc-36b7-42a2-abca-7d82d84c5b02"
+  ],
+  "same_exact_passage_set": true,
+  "all_finished": [
+    "stop",
+    "stop"
+  ],
+  "independent_arithmetic": "25.00%",
+  "basis": "(8+7)/60=25%",
+  "interpretation": "Saved input loss and output truncation excluded; internal model cause and service variability not resolved.",
+  "K_missing_needed": {
+    "T01": true,
+    "T02": true,
+    "T03": true,
+    "T04": true,
+    "T05": true,
+    "T06": true,
+    "T07": true,
+    "T08": true
+  }
+}

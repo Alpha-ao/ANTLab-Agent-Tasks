@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-08T09:51:33.142316+00:00",
+  "hashes": {
+    "基础/data/cases.json": "c37cda40ada89a18630dd7be098672f7e942e6f57e6199fe1aa2d6046e2b4961",
+    "基础/starter/student.py": "9de56a07cc25a02a749dc0b49a7723fb0fd76563fd664ba258c03d7493c0d705",
+    "基础/starter/runner.py": "a5e1e4e63ba61e414395509fc4bed7becf8d0372e598b4864035c734b5a5b04b",
+    "基础/starter/provider.py": "b573f2359ad7e7a2818f9c8ba07952d4d7bfb2854a6d7e14b509da27dcf9c761",
+    "scripts/run_basic.py": "ea4914ce87de24c7189bfd86fa9e61d359aec3a7ebc36b03b9397d4fd169fd19",
+    "基础/config.local.json": "9f0ae1e52c19f03257180dcf21adec0fd11da8fe10040f1d69cf29fbf2a74a47"
+  },
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "temperature": 0,
+      "max_tokens": 512,
+      "thinking": {
+        "type": "disabled"
+      },
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 90
+  },
+  "main_requests": 40,
+  "retries": 0,
+  "order_seed": 20261008
+}
