@@ -2188,6 +2188,87 @@
       "reserved_cny": 0.058506,
       "state": "ok",
       "charge_upper_cny": 0.00961
+    },
+    {
+      "run_id": "1537ea7e-705d-4663-a12e-ffa83825d1fa",
+      "stage": "advanced_b_feedback",
+      "case_id": "retrieval",
+      "arm": "category",
+      "reserved_cny": 0.042402,
+      "state": "ok",
+      "charge_upper_cny": 0.00786
+    },
+    {
+      "run_id": "bfce4c3d-8964-49f3-82d9-32f4abfbd2f8",
+      "stage": "advanced_b_feedback",
+      "case_id": "support",
+      "arm": "evidence",
+      "reserved_cny": 0.045162,
+      "state": "ok",
+      "charge_upper_cny": 0.00827
+    },
+    {
+      "run_id": "76b7443f-30e6-4bb4-8d04-66424eb14a02",
+      "stage": "advanced_b_feedback",
+      "case_id": "retrieval",
+      "arm": "evidence",
+      "reserved_cny": 0.043442,
+      "state": "ok",
+      "charge_upper_cny": 0.013582
+    },
+    {
+      "run_id": "8576b09c-baec-49bd-9312-1364cc7d56ae",
+      "stage": "advanced_b_feedback",
+      "case_id": "support",
+      "arm": "symptom",
+      "reserved_cny": 0.042284,
+      "state": "ok",
+      "charge_upper_cny": 0.006086
+    },
+    {
+      "run_id": "ba66aeef-06ee-4681-8767-30a713875078",
+      "stage": "advanced_b_feedback",
+      "case_id": "version",
+      "arm": "symptom",
+      "reserved_cny": 0.042288,
+      "state": "ok",
+      "charge_upper_cny": 0.00609
+    },
+    {
+      "run_id": "320fe13b-292e-40a3-bd9b-6d878bca5088",
+      "stage": "advanced_b_feedback",
+      "case_id": "version",
+      "arm": "evidence",
+      "reserved_cny": 0.045836,
+      "state": "ok",
+      "charge_upper_cny": 0.009578
+    },
+    {
+      "run_id": "0d46089f-96aa-478a-a57f-93054709dccb",
+      "stage": "advanced_b_feedback",
+      "case_id": "version",
+      "arm": "category",
+      "reserved_cny": 0.042418,
+      "state": "ok",
+      "charge_upper_cny": 0.004726
+    },
+    {
+      "run_id": "3ed72f7d-4392-4fdf-8513-5b4bed342e37",
+      "stage": "advanced_b_feedback",
+      "case_id": "support",
+      "arm": "category",
+      "reserved_cny": 0.04242,
+      "state": "ok",
+      "charge_upper_cny": 0.008276
+    },
+    {
+      "run_id": "89dd07a2-0b5c-47f5-9178-9a2548c5665a",
+      "stage": "advanced_b_feedback",
+      "case_id": "retrieval",
+      "arm": "symptom",
+      "reserved_cny": 0.042278,
+      "state": "ok",
+      "charge_upper_cny": 0.006278
     }
   ]
 }

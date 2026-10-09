@@ -1,0 +1,82 @@
+{
+  "case_id": "support",
+  "arm": "symptom",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+    },
+    {
+      "role": "user",
+      "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\"}"
+    }
+  ],
+  "allowed_ids": [],
+  "run_id": "8576b09c-baec-49bd-9312-1364cc7d56ae",
+  "utc": "2026-10-09T05:04:21.362535+00:00",
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "run_kind": "live_api",
+  "attempt": 1,
+  "status": "ok",
+  "elapsed_seconds": 7.755191399999603,
+  "response": {
+    "id": "16e076c8-8ec2-4aca-a04b-2bfe4295a31e",
+    "object": "chat.completion",
+    "created": 1791522266,
+    "model": "deepseek-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"diagnosis\":\"已知：系统页面将该答案判定为 supported；用户主观认为答案超出原文依据。未知：系统判定所依据的证据片段是否完整、答案中的每个事实性断言是否都能由该片段蕴含、支持判定阈值和生成过程是否引入了外部知识或过度推断。不能仅凭该症状断言唯一原因，可能是支持判定过宽、证据片段缺失/未展示、答案生成越界或人工判断标准不一致。\",\"evidence_ids\":[],\"proposed_check\":\"定位该条记录的判定输入、模型输出和系统标记为 supported 时使用的证据片段（evidence span），人工逐句核对答案中的每个事实性断言是否都能由该证据片段直接蕴含，并确认证据片段是否完整展示、是否被截断或仅部分引用。该检查可区分：判定逻辑过宽、证据检索/展示缺失、生成阶段引入外部知识或过度推断。\",\"repair_direction\":\"若判定过宽，收紧支持判定阈值并增加逐句蕴含校验；若证据片段缺失或被截断，修复证据检索、对齐与展示链路；若答案生成越界，约束生成仅使用给定证据并加强引用一致性检查；若仅为展示或人工标准差异，则统一支持判定口径并展示完整依据。\"}",
+          "reasoning_content": "我们需要回答用户。用户给了一个症状：页面显示supported，但用户认为答案超出了原文依据。需要作为文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为 diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。\n\n我们需要输出 JSON。没有提供 E 编号，所以 evidence_ids 空数组。诊断：页面显示 supported 表示系统判定有依据，但用户认为超出原文依据。可能原因：支持判定阈值/判定逻辑过宽；引用/依据片段不完整或未展示；答案生成时引入外部知识或过度推断；原文依据与答案不匹配。已知：页面显示 supported，用户主观认为超出原文依据。未知：实际支持关系、引用片段、判定阈值、模型输出。不能断言唯一原因。\n\nproposed_check：一个可以区分原因的具体检查。比如：检查该条答案对应的原文引用片段与答案断言是否逐句可蕴含，并对比系统判定 supported 所依据的 evidence span 是否完整覆盖答案中的每个事实性声明；若无引用片段，检查日志中判定输入和模型输出。需要具体，可区分原因。可以建议：抽检该条记录，定位其判定为 supported 时使用的证据片段和模型输出，人工逐句核对答案是否被证据蕴含，并检查是否存在证据片段未展示/截断。这能区分判定逻辑错误、证据缺失、答案过度生成。\n\nrepair_direction：若判定过宽则收紧支持判定阈值/增加蕴含校验；若证据片段缺失则修复证据检索与展示；若答案生成越界则约束生成只使用证据并加强引用。不能声称已修复。\n\n需要符合 JSON schema。字段恰为 diagnosis, evidence_ids, proposed_check, repair_direction。字符串数组。不要输出代码。使用中文。\n\n注意：输出必须是 JSON 对象。不要额外文字。确保合法 JSON。"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 171,
+      "completion_tokens": 718,
+      "total_tokens": 889,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 455
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 171
+    },
+    "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+  },
+  "usage": {
+    "prompt_tokens": 171,
+    "completion_tokens": 718,
+    "total_tokens": 889,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 455
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 171
+  },
+  "http_status": 200
+}

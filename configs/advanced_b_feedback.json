@@ -1,0 +1,172 @@
+{
+  "utc": "2026-10-09T05:04:02.026366+00:00",
+  "jobs": [
+    {
+      "case_id": "retrieval",
+      "arm": "category",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"当前版本明明存在匹配资料，但k=1时返回空证据。\", \"human_supplied_category\": \"检索范围与截取顺序\"}"
+        }
+      ],
+      "allowed_ids": []
+    },
+    {
+      "case_id": "support",
+      "arm": "evidence",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\", \"human_supplied_category\": \"引用定位与语义支持混淆\", \"external_observations\": [{\"id\": \"E1\", \"text\": \"{\\\"id\\\": \\\"R04\\\", \\\"reset_before\\\": true, \\\"request\\\": {\\\"query\\\": \\\"cancel gpu resource\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"点击取消就保证GPU立即停止计算并释放资源。\\\", \\\"citations\\\": [\\\"b04\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E2\", \"text\": \"{\\\"answer\\\": \\\"点击取消就保证GPU立即停止计算并释放资源。\\\", \\\"citations\\\": [\\\"b04\\\"], \\\"evidence\\\": [{\\\"id\\\": \\\"b04\\\", \\\"doc_id\\\": \\\"alpha\\\", \\\"snapshot\\\": \\\"v2\\\", \\\"page\\\": 2, \\\"text\\\": \\\"客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。\\\", \\\"tags\\\": [\\\"cancel\\\", \\\"gpu\\\", \\\"resource\\\"]}], \\\"locator_status\\\": \\\"valid\\\", \\\"support_status\\\": \\\"supported\\\", \\\"judgment_source\\\": \\\"rule\\\", \\\"status\\\": \\\"ok\\\", \\\"request_id\\\": \\\"9ff09b53-fd66-409e-90c5-fd5a0841ecc4\\\", \\\"request\\\": {\\\"query\\\": \\\"cancel gpu resource\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"cache_hit\\\": false, \\\"elapsed_ms\\\": 0.017100001059588976, \\\"run_kind\\\": \\\"offline_replay\\\"}\"}]}"
+        }
+      ],
+      "allowed_ids": [
+        "E1",
+        "E2"
+      ]
+    },
+    {
+      "case_id": "retrieval",
+      "arm": "evidence",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"当前版本明明存在匹配资料，但k=1时返回空证据。\", \"human_supplied_category\": \"检索范围与截取顺序\", \"external_observations\": [{\"id\": \"E1\", \"text\": \"本次请求alpha/v2，query=timeout request threshold，k=1。使用全新实例，cache_hit=false。\"}, {\"id\": \"E2\", \"text\": \"{\\\"ranked\\\": [\\\"b01\\\", \\\"b02\\\", \\\"b03\\\", \\\"b04\\\", \\\"b05\\\", \\\"b06\\\"], \\\"selected_before_final_scope\\\": [\\\"b01\\\"]}\"}, {\"id\": \"E3\", \"text\": \"b01属于alpha/v1，tags为timeout request threshold 30；b02属于alpha/v2，tags为timeout request threshold 12。最终evidence为空。\"}]}"
+        }
+      ],
+      "allowed_ids": [
+        "E1",
+        "E2",
+        "E3"
+      ]
+    },
+    {
+      "case_id": "support",
+      "arm": "symptom",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\"}"
+        }
+      ],
+      "allowed_ids": []
+    },
+    {
+      "case_id": "version",
+      "arm": "symptom",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"先查第一版，再查第二版同一问题，网页仍返回30秒。\"}"
+        }
+      ],
+      "allowed_ids": []
+    },
+    {
+      "case_id": "version",
+      "arm": "evidence",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"先查第一版，再查第二版同一问题，网页仍返回30秒。\", \"human_supplied_category\": \"请求与资料版本一致性\", \"external_observations\": [{\"id\": \"E1\", \"text\": \"{\\\"id\\\": \\\"R01\\\", \\\"reset_before\\\": true, \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v1\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"请求超时阈值为30秒。\\\", \\\"citations\\\": [\\\"b01\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E2\", \"text\": \"{\\\"id\\\": \\\"R02\\\", \\\"reset_before\\\": false, \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"请求超时阈值为12秒。\\\", \\\"citations\\\": [\\\"b02\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E3\", \"text\": \"{\\\"answer\\\": \\\"请求超时阈值为30秒。\\\", \\\"citations\\\": [\\\"b01\\\"], \\\"evidence\\\": [{\\\"id\\\": \\\"b01\\\", \\\"doc_id\\\": \\\"alpha\\\", \\\"snapshot\\\": \\\"v1\\\", \\\"page\\\": 1, \\\"text\\\": \\\"实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。\\\", \\\"tags\\\": [\\\"timeout\\\", \\\"request\\\", \\\"threshold\\\", \\\"30\\\"]}], \\\"locator_status\\\": \\\"valid\\\", \\\"support_status\\\": \\\"supported\\\", \\\"judgment_source\\\": \\\"rule\\\", \\\"status\\\": \\\"ok\\\", \\\"request_id\\\": \\\"4ff04db7-40fb-4c16-84f7-54db3d09206e\\\", \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"cache_hit\\\": true, \\\"elapsed_ms\\\": 0.01809999957913533, \\\"run_kind\\\": \\\"offline_replay\\\"}\"}]}"
+        }
+      ],
+      "allowed_ids": [
+        "E1",
+        "E2",
+        "E3"
+      ]
+    },
+    {
+      "case_id": "version",
+      "arm": "category",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"先查第一版，再查第二版同一问题，网页仍返回30秒。\", \"human_supplied_category\": \"请求与资料版本一致性\"}"
+        }
+      ],
+      "allowed_ids": []
+    },
+    {
+      "case_id": "support",
+      "arm": "category",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\", \"human_supplied_category\": \"引用定位与语义支持混淆\"}"
+        }
+      ],
+      "allowed_ids": []
+    },
+    {
+      "case_id": "retrieval",
+      "arm": "symptom",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+        },
+        {
+          "role": "user",
+          "content": "{\"symptom\": \"当前版本明明存在匹配资料，但k=1时返回空证据。\"}"
+        }
+      ],
+      "allowed_ids": []
+    }
+  ],
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "hashes": {
+    "scripts\\run_b_feedback.py": "5d9d6974b831f7f2ef73b2f9a951c9a09a310bbf64bbbba1ad2493b4bfa3950c",
+    "configs\\advanced_b_plan.json": "15fc67484ff019a61d10c4d6cd2114d9680d2a8e6066c38de0e30b067fdb1d8f",
+    "基础\\starter\\provider.py": "b573f2359ad7e7a2818f9c8ba07952d4d7bfb2854a6d7e14b509da27dcf9c761"
+  },
+  "notice": "diagnosis only, known hand-selected faults, no automatic code repair; category labels supplied by experiment author"
+}

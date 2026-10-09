@@ -1,6 +1,37 @@
-# 本地基础任务实现
+# ANTLab：基础任务与进阶B
 
-## 当前推荐版本（2026-10-08）
+## 当前交付（2026-10-09）
+
+B题已完成本地诊断、修复与浏览器验证；基础历史结果保留。
+主问题是版本切换误用旧缓存，另修正范围外条目挤占检索名额和虚假supported状态。
+39项离线检查通过；DeepSeek V4.1 Flash新增9次真实诊断请求，无自动重试。
+这9次研究外部信息怎样帮助诊断，没有让模型自动修改代码，也不代表自动修复成功率。
+版本现象的描述有歧义，保留失败，不据此声称外部反馈普遍有效。
+累计195次API请求，高峰价格估算上界1.093666元，仍在10元上限内。
+
+[整合报告](report.md) · [B逐例结果](results/advanced_b/paired.md) · [B计划与资料](work/deep-interview/advanced-b.md)
+
+```powershell
+python scripts/serve_b.py --port 8769
+# 另一个终端运行；离线，不收费。label不得复用已有目录。
+python scripts/check_advanced_b.py --label my_review_01
+python scripts/summarize_b.py
+python scripts/audit_b.py
+```
+
+打开 http://127.0.0.1:8769 ，分别在原样机/修复版点击“版本切换演示”。
+可编辑请求、查看实际版本、引用原文及对应请求日志；下方显示9条已保存的真实模型诊断。
+页面重放只执行本地程序，不发API请求。原始模型响应含在runs/advanced_b/live_feedback。
+`scripts/run_b_feedback.py --run`是付费命令，需要本地配置与ASSESSMENT_API_KEY，且已有首轮记录时拒绝重跑。
+部署范围仅本机单进程，不提供多用户生产服务；不要并行启动多个付费执行器。
+Python 3.10+，标准库即可。本机实测Python 3.14。
+
+题包原样机在versions/advanced_b，新增fixed_engine.py为修复实现，diagnostic_engine.py只用于四条件干预。
+上游基点b028d90f43f44585cf085a3f607516a94f485e88；本人工作由Codex辅助，尚需用户亲自核验。
+查看全部改动：`git diff b028d90f43f44585cf085a3f607516a94f485e88 HEAD`；最终本地版本：`git rev-parse HEAD`。
+尚未完成个人GitHub Fork/推送、收集表与独立人工复核；这些不以本地运行代替。
+
+## 基础推荐版本（2026-10-08历史记录）
 
 使用 **v2提示词 + low思考模式 + 完整资料原序**。已见8道评测题在R0/R1/R2/排序四组均8/8暂定正确；
 新长文本/缺资料检查16/16通过，另保留1条测试本身有歧义的记录。不是独立人工盲评。
@@ -25,7 +56,7 @@ python -m unittest discover -s tests -v
 上游源码基点：b028d90f43f44585cf085a3f607516a94f485e88。
 查看修改：`git diff b028d90f43f44585cf085a3f607516a94f485e88`（新文件另见git status）。
 
-- [首轮报告](report.md)、[执行决策](decisions.md)、[AI声明](declaration.md)
+- [首轮报告](report-basic-v1.md)、[执行决策](decisions.md)、[AI声明](declaration.md)
 - [逐题结果](results/results.csv)、[配对结果](results/paired.json)、[费用上界](results/budget.json)
 - [诊断](results/diagnostic.json)、[变体检查](results/variants.json)、[冻结配置](configs/frozen.json)
 

@@ -1,0 +1,82 @@
+{
+  "case_id": "support",
+  "arm": "category",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+    },
+    {
+      "role": "user",
+      "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\", \"human_supplied_category\": \"引用定位与语义支持混淆\"}"
+    }
+  ],
+  "allowed_ids": [],
+  "run_id": "3ed72f7d-4392-4fdf-8513-5b4bed342e37",
+  "utc": "2026-10-09T05:04:50.523254+00:00",
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "run_kind": "live_api",
+  "attempt": 1,
+  "status": "ok",
+  "elapsed_seconds": 6.727628599999662,
+  "response": {
+    "id": "623fa1ff-18b3-44a7-bcba-a16b4afee787",
+    "object": "chat.completion",
+    "created": 1791522292,
+    "model": "deepseek-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"diagnosis\":\"已知：页面显示 supported，而用户主观认为答案超出原文依据。假设：系统可能把“引用定位成功/存在词面重叠”误判为“语义支持”，即支持标签未真正校验回答中的每个断言是否由所引原文直接蕴含。无日志时不能断言唯一原因，需区分是引用定位错误还是支持判定过松。\",\"evidence_ids\":[],\"proposed_check\":\"对同一条回答，要求系统展示其 support 判定所依据的引文区间与判定理由，并人工核对每个关键断言是否能由该引文区间原文直接推出；若引文定位正确但断言仍需外部知识，则指向语义支持判定过松；若引文定位本身错误，则指向引用定位缺陷。\",\"repair_direction\":\"拆分引用定位与语义支持：定位模块只负责找到候选原文区间，支持模块需做逐断言蕴含校验；支持标签应只在所有关键断言均被原文区间直接支持时给出，否则降级为部分支持或依据不足；避免用检索分数或词面重叠替代语义支持判定。\"}",
+          "reasoning_content": "We need answer JSON only. Need diagnose based on given symptom and category. No observations E ids provided. Need output diagnosis string, evidence_ids empty, proposed_check specific, repair_direction. We must not fabricate logs. We need distinguish known and hypothesis. Symptom: page shows supported, but user thinks answer exceeds original basis. Human category: citation localization and semantic support confusion. Need maybe explain possible causes: system conflates citation span existence with semantic entailment; \"supported\" badge based on retrieval/citation match not answer entailment. Proposed check: take same query/answer/cited passage, independently assess whether each claim entailed by cited span; compare system's support score components; or inspect whether support decision uses span overlap/lexical similarity vs entailment. Need concrete check to distinguish causes. Maybe \"对同一条回答，要求系统输出引文原文、支撑判定所依据的句子/区间、判定分数；人工检查是否每个断言都能由该区间直接推出；若引文存在但断言需外部知识，则是语义支持判定缺陷；若无引文区间则引用定位缺陷。\" But category says citation localization and semantic support confusion. Need maybe proposed_check: \"对同一回答运行支持性判定，分别记录引文定位结果与支持性判定输入：若引文定位正确但支持性判定仅基于关键词重叠，则支持判定过松；若引文定位指向错误段落但支持判定仍通过，则定位与支持耦合错误。\" Evidence_ids empty. Diagnosis should say known: 页面显示 supported 是观察；用户认为超出原文依据是主观/待验证。Possible causes: 支持判定与引用定位混淆；支持标签可能仅表示找到引用或表面重叠，而非语义蕴含。No logs so cannot断言唯一原因。 Repair_direction: 将支持性判定拆成引用定位和语义蕴含检查；支持标签需基于每个断言被引文区间蕴含，避免仅用检索/重叠；对超原文依据的回答降级或标注。 Need JSON schema.\n\nNeed only JSON object. Ensure fields exactly diagnosis, evidence_ids, proposed_check, repair_direction. Strings. evidence_ids [] because no E. Use Chinese. Must not claim run. Let's craft concise.\n\nNeed maybe mention \"已知: 页面显示supported；用户主观认为超出原文依据。假设: support 判定混淆了引用定位与语义支持，可能把‘找到引用/有重叠’当成‘语义蕴含’。\" Good.\n\nProposed check: \"在离线样机中不要运行修复；设计人工复核：取该页面同一条回答，导出其引文定位区间与支持判定所用输入/特征（如无日志则要求系统展示判定依据），分别核对：引用是否指向原文正确句子，以及回答中每个事实断言是否能由该引文区间直接推出；至少找一条只靠外部知识才能推出的断言来区分‘定位错’还是‘支持判定过松’。\" But maybe too long. Need one check. Could be: \"对同一条回答，要求系统展示其 support 判定所依据的引文区间和判定理由，并人工判断每个断言是否被该区间原文直接蕴含；若区间定位正确但断言仍需外部知识，则指向语义支持判定过松；若区间定位错误，则指向引用定位缺陷。\" Good.\n\nRepair_direction: \"拆分引用定位与语义支持：定位模块只负责找到候选原文区间，支持模块需做逐断言蕴含校验；支持标签只在所有关键断言均被原文区间直接支持时给出，否则标注‘部分支持/依据不足’；避免用检索分数或词面重叠替代支持判定。\"\n\nNeed valid JSON. No markdown."
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 186,
+      "completion_tokens": 988,
+      "total_tokens": 1174,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 757
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 186
+    },
+    "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+  },
+  "usage": {
+    "prompt_tokens": 186,
+    "completion_tokens": 988,
+    "total_tokens": 1174,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 757
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 186
+  },
+  "http_status": 200
+}

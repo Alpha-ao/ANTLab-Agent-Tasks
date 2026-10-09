@@ -1,0 +1,86 @@
+{
+  "case_id": "version",
+  "arm": "evidence",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+    },
+    {
+      "role": "user",
+      "content": "{\"symptom\": \"先查第一版，再查第二版同一问题，网页仍返回30秒。\", \"human_supplied_category\": \"请求与资料版本一致性\", \"external_observations\": [{\"id\": \"E1\", \"text\": \"{\\\"id\\\": \\\"R01\\\", \\\"reset_before\\\": true, \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v1\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"请求超时阈值为30秒。\\\", \\\"citations\\\": [\\\"b01\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E2\", \"text\": \"{\\\"id\\\": \\\"R02\\\", \\\"reset_before\\\": false, \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"请求超时阈值为12秒。\\\", \\\"citations\\\": [\\\"b02\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E3\", \"text\": \"{\\\"answer\\\": \\\"请求超时阈值为30秒。\\\", \\\"citations\\\": [\\\"b01\\\"], \\\"evidence\\\": [{\\\"id\\\": \\\"b01\\\", \\\"doc_id\\\": \\\"alpha\\\", \\\"snapshot\\\": \\\"v1\\\", \\\"page\\\": 1, \\\"text\\\": \\\"实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。\\\", \\\"tags\\\": [\\\"timeout\\\", \\\"request\\\", \\\"threshold\\\", \\\"30\\\"]}], \\\"locator_status\\\": \\\"valid\\\", \\\"support_status\\\": \\\"supported\\\", \\\"judgment_source\\\": \\\"rule\\\", \\\"status\\\": \\\"ok\\\", \\\"request_id\\\": \\\"4ff04db7-40fb-4c16-84f7-54db3d09206e\\\", \\\"request\\\": {\\\"query\\\": \\\"timeout request threshold\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"cache_hit\\\": true, \\\"elapsed_ms\\\": 0.01809999957913533, \\\"run_kind\\\": \\\"offline_replay\\\"}\"}]}"
+    }
+  ],
+  "allowed_ids": [
+    "E1",
+    "E2",
+    "E3"
+  ],
+  "run_id": "320fe13b-292e-40a3-bd9b-6d878bca5088",
+  "utc": "2026-10-09T05:04:33.766784+00:00",
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "run_kind": "live_api",
+  "attempt": 1,
+  "status": "ok",
+  "elapsed_seconds": 12.732755000000907,
+  "response": {
+    "id": "69bd67f7-48e4-4ef3-bc61-8fd3dd8a30f9",
+    "object": "chat.completion",
+    "created": 1791522282,
+    "model": "deepseek-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"diagnosis\":\"已知：E1 在 snapshot=v1 时返回“30秒”并引用 b01；E2 在 snapshot=v2 时草稿返回“12秒”并引用 b02；E3 显示请求字段为 snapshot=v2，却返回“30秒”且引用 b01，同时 cache_hit=true。由此可确定存在“v2 请求得到 v1 答案”的版本不一致现象，且与缓存命中相关。假设：缓存键或缓存层未包含 snapshot/版本维度，导致第二版请求命中第一版缓存；但现有证据不足以断言这是唯一原因。\",\"evidence_ids\":[\"E1\",\"E2\",\"E3\"],\"proposed_check\":\"对同一 query 和 doc_ids 分别发起 snapshot=v1 与 snapshot=v2 请求，并在 v2 请求前清空缓存或强制绕过缓存，对比返回的 answer、citations 以及 cache_hit；若清缓存后 v2 返回 b02/12秒，而不清缓存时 v2 返回 b01/30秒且 cache_hit=true，则支持缓存未按 snapshot 区分；若清缓存后 v2 仍返回 b01/30秒，则原因在版本选择或资料过滤链路。\",\"repair_direction\":\"在缓存键和请求处理链中显式纳入 snapshot/版本身份，确保不同版本的同一 query 不互相复用缓存答案；同时在返回前校验 citations 的 snapshot 与请求 snapshot 一致，若不一致则重新检索或拒绝命中缓存。\"}",
+          "reasoning_content": "We need answer JSON only. Need diagnose. Need understand Chinese. Symptom: \"先查第一版，再查第二版同一问题，网页仍返回30秒。\" First query v1, then query v2 same question, webpage still returns 30秒. Human category: 请求与资料版本一致性. Observations E1: R01 reset_before true, request snapshot v1, draft answer 30s citations b01. E2: R02 reset_before false, request snapshot v2, draft answer 12s citations b02. E3: an offline_replay record? It says answer 30秒 citations b01, evidence b01 snapshot v1 text 30秒 only applies first version; locator valid supported; request field snapshot v2 but answer from v1? cache_hit true, run_kind offline_replay. This seems key: E3 shows request snapshot v2 but answer/citations b01 from v1, cache_hit true. So likely cache not keyed by snapshot/version, served stale v1 answer for v2 request. Need distinguish known vs hypothesis. Known: E1 v1 answer 30, E2 v2 draft answer 12, E3 replay with request v2 returned v1 answer 30 and cache_hit true. Hypothesis: cache key omits snapshot/version, causing stale answer. Need propose check to differentiate: e.g. 在相同 query/doc_ids 下，分别以 v1 与 v2 请求并关闭缓存/更改缓存键，检查 v2 是否返回 b02/12秒；或检查缓存键是否包含 snapshot 字段。 Can't run repair. Output JSON fields exactly. evidence_ids only E1 E2 E3. proposed_check string. repair_direction string. No code. Need ensure valid JSON.\n\nNeed be careful: \"不要输出代码\" but JSON okay. Need not claim logs. We can say 根据 E3. Evidence ids array. diagnosis string maybe mention 已知：E3 中请求 snapshot=v2 但返回 v1 的 b01/30秒且 cache_hit=true；假设缓存未按 snapshot 区分，导致第二版请求命中第一版缓存。 Need not assert唯一原因. proposed_check: 在同一 query/doc_ids 下，分别以 snapshot=v1 和 v2 请求，并对比关闭缓存或强制 cache bypass/清除缓存前后返回的 citations 与 answer；若 v2 始终返回 b01/30 且 cache_hit=true，而清缓存或把 snapshot 纳入缓存键后返回 b02/12，则支持版本缓存键缺失；若 v2 本身草稿也返回30则另因。 But proposed_check one specific check. Could mention \"检查缓存键是否包含 snapshot 字段，并做 v2 请求清缓存对照\". repair_direction: 将快照/版本身份纳入缓存键或检索过滤，禁止 v2 复用 v1 的答案；若需支持版本一致性，在请求处理链按 snapshot 选择文档并校验 citations 的 snapshot。 Need avoid code. Also mention no GPU. \n\nNeed output exactly JSON object. Ensure strings escaped. Chinese okay. Use double quotes. Evidence_ids [\"E1\",\"E2\",\"E3\"]. But maybe E3 only? E1/E2 provide contrast. Include all three. diagnosis string. \n\nNeed no markdown. Final only JSON."
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 645,
+      "completion_tokens": 1036,
+      "total_tokens": 1681,
+      "prompt_tokens_details": {
+        "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 708
+      },
+      "prompt_cache_hit_tokens": 128,
+      "prompt_cache_miss_tokens": 517
+    },
+    "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+  },
+  "usage": {
+    "prompt_tokens": 645,
+    "completion_tokens": 1036,
+    "total_tokens": 1681,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 708
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 517
+  },
+  "http_status": 200
+}

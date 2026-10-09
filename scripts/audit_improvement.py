@@ -34,7 +34,9 @@ def main():
     ui=[read(p) for p in (ROOT/'runs/ui_v2').glob('*.json')]
     checks['one_real_ui_request_record']=len(ui)==1 and ui[0]['status']=='ok' and answer(ui[0])=={'answer':'80%','citations':['P312446','P898100']}
     budget=read(ROOT/'results/budget.json');entries=budget['entries'];cost=sum(e.get('charge_upper_cny',e['reserved_cny']) for e in entries)
-    checks['all_calls_under_budget']=len(entries)==186 and cost<=10 and all(e['state']=='ok' for e in entries)
+    # Basic-stage count stays fixed while later B-stage calls share the same budget.
+    basic_entries=[e for e in entries if not e.get('stage','').startswith('advanced_b')]
+    checks['all_calls_under_budget']=len(basic_entries)==186 and cost<=10 and all(e['state']=='ok' for e in entries)
     checks['no_credential_patterns_in_deliverables']=not any(re.search(r'sk-[A-Za-z0-9]{20,}',p.read_text(encoding='utf-8-sig')) for d in ['runs','results','configs','versions'] for p in (ROOT/d).rglob('*') if p.is_file() and p.suffix in ['.json','.csv','.md','.py'])
     out={'checks':checks,'cny_peak_upper':cost,'live_requests':len(entries),
          'scope':'basic implementation improvement; provisional rule labels, not independent human review',

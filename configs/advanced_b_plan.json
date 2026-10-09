@@ -1,0 +1,28 @@
+{
+  "recorded_before_interventions": true,
+  "date": "2026-10-09",
+  "scope": "B system repair plus model-assisted diagnosis, not autonomous code repair",
+  "primary_failure": "R01 then R02 returns v1 evidence for v2 request",
+  "hypotheses": {
+    "cache": "Query-only cache causes cross-version reuse; resetting removes stale answer for original k=2",
+    "retrieval": "Global top-k before scope independently drops evidence; cold v2 k=1 still misses b02"
+  },
+  "interventions": ["original", "cache_only", "scope_only", "both"],
+  "predictions": {
+    "original": {"warm_v2_stale": true, "cold_v2_k1_missing": true},
+    "cache_only": {"warm_v2_stale": false, "cold_v2_k1_missing": true},
+    "scope_only": {"warm_v2_stale": true, "cold_v2_k1_missing": false},
+    "both": {"warm_v2_stale": false, "cold_v2_k1_missing": false}
+  },
+  "model_experiment": {
+    "cases": ["version", "retrieval", "support"],
+    "arms": ["symptom", "category", "evidence"],
+    "requests": 9,
+    "model": "deepseek-flash",
+    "parameters": {"thinking": {"type": "enabled"}, "reasoning_effort": "low", "max_tokens": 4096, "response_format": {"type": "json_object"}},
+    "prediction": "Specific trace evidence may improve grounded diagnosis; category labels alone may only cause repetition. No guaranteed gain.",
+    "limits": "Three hand-selected known defects; human/AI-authored labels. Same output cap, unequal input lengths. No claim of generic repair success.",
+    "stop": "API/JSON/truncation/usage/cost anomaly stops batch without retry. Wrong substantive diagnoses are retained as outcomes.",
+    "total_project_budget_cny": 10
+  }
+}

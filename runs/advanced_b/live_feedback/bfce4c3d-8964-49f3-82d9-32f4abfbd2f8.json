@@ -1,0 +1,85 @@
+{
+  "case_id": "support",
+  "arm": "evidence",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+    },
+    {
+      "role": "user",
+      "content": "{\"symptom\": \"页面显示supported，但用户认为答案超出了原文依据。\", \"human_supplied_category\": \"引用定位与语义支持混淆\", \"external_observations\": [{\"id\": \"E1\", \"text\": \"{\\\"id\\\": \\\"R04\\\", \\\"reset_before\\\": true, \\\"request\\\": {\\\"query\\\": \\\"cancel gpu resource\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"draft\\\": {\\\"answer\\\": \\\"点击取消就保证GPU立即停止计算并释放资源。\\\", \\\"citations\\\": [\\\"b04\\\"], \\\"origin\\\": \\\"synthetic_fixture\\\"}}\"}, {\"id\": \"E2\", \"text\": \"{\\\"answer\\\": \\\"点击取消就保证GPU立即停止计算并释放资源。\\\", \\\"citations\\\": [\\\"b04\\\"], \\\"evidence\\\": [{\\\"id\\\": \\\"b04\\\", \\\"doc_id\\\": \\\"alpha\\\", \\\"snapshot\\\": \\\"v2\\\", \\\"page\\\": 2, \\\"text\\\": \\\"客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。\\\", \\\"tags\\\": [\\\"cancel\\\", \\\"gpu\\\", \\\"resource\\\"]}], \\\"locator_status\\\": \\\"valid\\\", \\\"support_status\\\": \\\"supported\\\", \\\"judgment_source\\\": \\\"rule\\\", \\\"status\\\": \\\"ok\\\", \\\"request_id\\\": \\\"9ff09b53-fd66-409e-90c5-fd5a0841ecc4\\\", \\\"request\\\": {\\\"query\\\": \\\"cancel gpu resource\\\", \\\"doc_ids\\\": [\\\"alpha\\\"], \\\"snapshot\\\": \\\"v2\\\", \\\"k\\\": 2}, \\\"cache_hit\\\": false, \\\"elapsed_ms\\\": 0.017100001059588976, \\\"run_kind\\\": \\\"offline_replay\\\"}\"}]}"
+    }
+  ],
+  "allowed_ids": [
+    "E1",
+    "E2"
+  ],
+  "run_id": "bfce4c3d-8964-49f3-82d9-32f4abfbd2f8",
+  "utc": "2026-10-09T05:04:07.570942+00:00",
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "run_kind": "live_api",
+  "attempt": 1,
+  "status": "ok",
+  "elapsed_seconds": 5.867221400001654,
+  "response": {
+    "id": "b2ae7143-a4a0-4697-bb16-cbe37304665c",
+    "object": "chat.completion",
+    "created": 1791522249,
+    "model": "deepseek-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"diagnosis\": \"已知：系统判定 citation b04 定位有效（locator_status=valid）且 support_status=supported，但 b04 原文仅说明客户端取消停止本地结果展示，并明确没有测量服务端是否释放 GPU 计算资源。用户认为答案超出原文依据，是指答案“点击取消就保证 GPU 立即停止计算并释放资源”包含原文未支持甚至相反方向的强断言。假设：support_status 可能由基于引用存在/定位的规则给出，未充分做答案主张与引用证据之间的语义蕴含校验，导致定位有效与语义支持混淆。不能仅凭现有观察断言唯一原因，也不能声称已运行修复或测量 GPU。\", \"evidence_ids\": [\"E1\", \"E2\"], \"proposed_check\": \"检查生成 support_status 的规则/判定路径：它是否只验证引用 b04 的定位存在、页码和文档快照，还是会把答案主张“点击取消保证 GPU 立即停止计算并释放资源”与 b04 证据文本逐句做蕴含/矛盾判断；重点确认 b04 的“仅停止本地结果展示；没有测量服务端是否释放 GPU 计算资源”是否被作为不支持或反向证据纳入判定。\", \"repair_direction\": \"将“引用定位有效”和“语义支持充分”拆成两个独立状态，不能用 locator_status 代替 support_status；对 support_status 增加针对被引证据的蕴含/矛盾校验，当证据仅说明本地展示停止且明确未测量服务端 GPU 释放时，不应支持“保证立即停止并释放资源”的强断言。相应答案应弱化为受原文限定的表述，或标记为不支持/部分支持并提示缺少服务端 GPU 释放证据。\"}",
+          "reasoning_content": "We need answer as JSON object per schema. Need diagnose. We have symptom: page shows supported, but user believes answer exceeds original basis. Human category: 引用定位与语义支持混淆. External observations E1 draft answer/citations, E2 answer/citations/evidence locator_status valid support_status supported judgment_source rule. Need only based observations, distinguish known and hypotheses; no logs don't fabricate. Output JSON fields diagnosis string, evidence_ids array only E1/E2, proposed_check specific check, repair_direction. Need likely: locator_status valid (citation b04 exists and points to page) but semantic support questionable: answer claims \"guarantee GPU immediately stops and releases\" while evidence says cancel only stops local display; no measurement server release. Thus supported status maybe false positive due rule judging locator not entailment. Need proposed check: compare answer claims against evidence text, specifically whether evidence entails \"guarantee GPU immediately stops...\"; inspect support decision logic? But offline no run. We can say check whether support_status=supported is based solely on locator_status or lexical overlap, by evaluating citation b04 evidence text against answer proposition. Need don't run. Could propose re-run with stricter entailment? But offline synthetic. Need repair direction: decouple citation locator validity from semantic support; require entailment / contradiction detection; if evidence explicitly says no measurement, answer should be unsupported/partially supported or answer revised. Must include evidence_ids [\"E1\",\"E2\"] maybe E2 only? Both relevant. Need diagnosis string concise.\n\nNeed ensure JSON only. No code. Let's craft.\n\nNeed maybe mention known: E1 draft answer cites b04; E2 same answer cites b04, b04 text states cancel only stops local result display; no measurement server release; locator_status valid; support_status supported. Hypothesis: support_status may be based on rule/locator not semantic entailment; answer overstates evidence. Proposed check: inspect rule/judgment for support_status: determine whether it verifies citation exists/page only or performs NLI/entailment against full evidence; compare proposition \"点击取消保证GPU立即停止计算并释放资源\" with b04 text; expected b04 neither entails nor supports \"保证...立即...释放\", and explicitly lacks measurement. Repair direction: separate locator validity and support; for support_status use entailment against cited evidence, flag unsupported if evidence contradicts/doesn't entail; update answer to not claim guarantee/release; maybe return supports with caveats. Need no measurement GPU.\n\nNeed adhere schema exactly. JSON object."
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 543,
+      "completion_tokens": 898,
+      "total_tokens": 1441,
+      "prompt_tokens_details": {
+        "cached_tokens": 128
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 530
+      },
+      "prompt_cache_hit_tokens": 128,
+      "prompt_cache_miss_tokens": 415
+    },
+    "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+  },
+  "usage": {
+    "prompt_tokens": 543,
+    "completion_tokens": 898,
+    "total_tokens": 1441,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 530
+    },
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 415
+  },
+  "http_status": 200
+}

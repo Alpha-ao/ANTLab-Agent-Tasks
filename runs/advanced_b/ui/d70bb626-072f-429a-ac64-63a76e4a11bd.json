@@ -1,0 +1,130 @@
+{
+  "mode": "original",
+  "reset": true,
+  "request": {
+    "query": "timeout request threshold",
+    "doc_ids": [
+      "alpha"
+    ],
+    "snapshot": "v1",
+    "k": 2
+  },
+  "draft": {
+    "answer": "请求超时阈值为30秒。",
+    "citations": [
+      "b01"
+    ],
+    "origin": "synthetic_fixture"
+  },
+  "corpus": [
+    {
+      "id": "b01",
+      "doc_id": "alpha",
+      "snapshot": "v1",
+      "page": 1,
+      "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+      "tags": [
+        "timeout",
+        "request",
+        "threshold",
+        "30"
+      ]
+    },
+    {
+      "id": "b02",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 1,
+      "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+      "tags": [
+        "timeout",
+        "request",
+        "threshold",
+        "12"
+      ]
+    },
+    {
+      "id": "b03",
+      "doc_id": "beta",
+      "snapshot": "v1",
+      "page": 2,
+      "text": "实验B timeout 为5秒，与实验A无关。",
+      "tags": [
+        "timeout",
+        "5"
+      ]
+    },
+    {
+      "id": "b04",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 2,
+      "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+      "tags": [
+        "cancel",
+        "gpu",
+        "resource"
+      ]
+    },
+    {
+      "id": "b05",
+      "doc_id": "beta",
+      "snapshot": "v1",
+      "page": 3,
+      "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+      "tags": [
+        "metadata",
+        "beta"
+      ]
+    },
+    {
+      "id": "b06",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 3,
+      "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+      "tags": [
+        "worker",
+        "single",
+        "process"
+      ]
+    }
+  ],
+  "output": {
+    "answer": "请求超时阈值为30秒。",
+    "citations": [
+      "b01"
+    ],
+    "evidence": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      }
+    ],
+    "locator_status": "valid",
+    "support_status": "supported",
+    "judgment_source": "rule",
+    "status": "ok",
+    "request_id": "d70bb626-072f-429a-ac64-63a76e4a11bd",
+    "request": {
+      "query": "timeout request threshold",
+      "doc_ids": [
+        "alpha"
+      ],
+      "snapshot": "v1",
+      "k": 2
+    },
+    "cache_hit": false,
+    "elapsed_ms": 0.08470000102533959,
+    "run_kind": "offline_replay"
+  }
+}

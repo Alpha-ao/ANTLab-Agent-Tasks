@@ -1,0 +1,82 @@
+{
+  "case_id": "retrieval",
+  "arm": "symptom",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是文档查证系统的故障诊断助手。只根据所给观察判断，区分已知和假设；没有日志就不要编造日志或断言唯一原因。输出JSON对象，字段恰为diagnosis（字符串）、evidence_ids（字符串数组，只能引用提供的E编号，无则空数组）、proposed_check（一个可以区分原因的具体检查，字符串）、repair_direction（字符串）。不要输出代码。这里是离线合成样机，不能声称已经运行修复或测量GPU。"
+    },
+    {
+      "role": "user",
+      "content": "{\"symptom\": \"当前版本明明存在匹配资料，但k=1时返回空证据。\"}"
+    }
+  ],
+  "allowed_ids": [],
+  "run_id": "89dd07a2-0b5c-47f5-9178-9a2548c5665a",
+  "utc": "2026-10-09T05:04:57.279927+00:00",
+  "config": {
+    "provider": "DeepSeek",
+    "model": "deepseek-flash",
+    "parameters": {
+      "thinking": {
+        "type": "enabled"
+      },
+      "reasoning_effort": "low",
+      "max_tokens": 4096,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "timeout_seconds": 120
+  },
+  "run_kind": "live_api",
+  "attempt": 1,
+  "status": "ok",
+  "elapsed_seconds": 9.266965999999229,
+  "response": {
+    "id": "b31e9f3b-641d-449c-bae2-b3e5122dc94d",
+    "object": "chat.completion",
+    "created": 1791522303,
+    "model": "deepseek-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"diagnosis\":\"仅凭“当前版本存在匹配资料，但 k=1 返回空证据”不能断言唯一原因。已知：查询结果在 k=1 时为空，而资料库中当前版本确有匹配项。假设原因包括：1) 先取 top-1 再做版本/权限/阈值过滤，导致唯一候选被过滤掉；2) 相似度阈值或最小分数过滤在 k=1 时误杀；3) 当前版本资料未进入索引或索引版本字段与查询过滤不一致；4) 查询归一化、分词或字段映射导致匹配项未成为候选；5) k 参数在检索层与过滤层语义不一致或存在截断逻辑错误。\",\"evidence_ids\":[],\"proposed_check\":\"对同一查询做对照检查：保留 k=1 的现有流程，同时另取一次较大 k（如 k=10/50）并记录过滤前原始候选、过滤后候选及被过滤原因；若大 k 的原始候选中出现该匹配资料而 k=1 为空，则重点区分“top-k 截断先于过滤”还是“阈值过滤”；若大 k 原始候选中也不出现，则检查索引中当前版本字段、查询解析结果与过滤条件是否一致。\",\"repair_direction\":\"优先修正检索与过滤的顺序：先应用版本、权限、阈值等过滤，再按过滤后结果截断 top-k；同时核对索引是否包含当前版本资料、版本字段映射是否一致，并检查相似度阈值在 k=1 时是否过于严格。若索引缺失或版本不匹配，应重建或刷新对应索引并校正查询过滤条件。\"}",
+          "reasoning_content": "We need answer JSON only. Need diagnose from symptom: current version exists matching material but k=1 returns empty evidence. We have no logs/evidence IDs provided. Need output fields diagnosis, evidence_ids empty, proposed_check, repair_direction. Must not fabricate logs. Need likely issue in retrieval system: k=1 and empty evidence despite matching docs. Could be filtering, score threshold, index staleness, chunking, query normalization, version filter mismatch, top_k off-by-one? Need distinguish known and hypotheses. Since only symptom, no logs. Diagnosis should state possible causes, not assert unique. Proposed check specific to differentiate. Repair direction.\n\nNeed JSON object exactly. Ensure evidence_ids empty array. Chinese. Let's craft.\n\nWe need maybe mention \"当前版本存在匹配资料\" is given observation. \"k=1 返回空证据\" is symptom. Possible causes: 检索后过滤在 top-k 之后执行，导致取回1条但被过滤掉；或阈值/最小分数过滤；或索引/版本字段未更新；或 k 参数在过滤前截断；或空查询/权限过滤。 Proposed check: 用相同查询，将 k 提升到较大值（如 10/50），并同时关闭所有后过滤/阈值（或记录过滤前后候选数），看匹配资料是否出现在原始候选；若原始候选有但 k=1 无，则是过滤或截断；若原始候选无，则索引/版本/查询侧问题。 Since cannot run? proposed check can be \"检查检索管道返回的原始候选与过滤后候选\". Need specific.\n\nRepair direction: 调整 top-k 与过滤顺序，先过滤再截断或按过滤后重排；修复索引/版本映射；阈值针对 k=1 自适应；确保匹配资料进入候选。\n\nNeed JSON. Ensure no markdown."
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 175,
+      "completion_tokens": 741,
+      "total_tokens": 916,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 385
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 175
+    },
+    "system_fingerprint": "aeb56401ca74e127821c4f9126dcb669"
+  },
+  "usage": {
+    "prompt_tokens": 175,
+    "completion_tokens": 741,
+    "total_tokens": 916,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 385
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 175
+  },
+  "http_status": 200
+}

@@ -1,0 +1,802 @@
+[
+  {
+    "case_id": "R01",
+    "before": {
+      "answer": "请求超时阈值为30秒。",
+      "citations": [
+        "b01"
+      ],
+      "evidence": [
+        {
+          "id": "b01",
+          "doc_id": "alpha",
+          "snapshot": "v1",
+          "page": 1,
+          "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "30"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "b6a0da2b-b847-46f4-ba4e-4dc65a76d493",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.020199999198666774,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "b861ba6b-c486-464d-8ba1-56c03e3a9843",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "请求超时阈值为30秒。",
+      "citations": [
+        "b01"
+      ],
+      "evidence": [
+        {
+          "id": "b01",
+          "doc_id": "alpha",
+          "snapshot": "v1",
+          "page": 1,
+          "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "30"
+          ],
+          "block_id": "b01",
+          "locator": {
+            "page": 1,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "alpha",
+          "snapshot": "v1"
+        }
+      ],
+      "origin_request_id": "b861ba6b-c486-464d-8ba1-56c03e3a9843",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "19771cad6f1327f0ed9d531578f757c5a031fcacb09dce8d889e9d19a8397108",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b01",
+              "score": 3
+            }
+          ],
+          "selected": [
+            "b01"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "19771cad6f1327f0ed9d531578f757c5a031fcacb09dce8d889e9d19a8397108",
+      "status": "ok",
+      "elapsed_ms": 0.07449999975506216
+    }
+  },
+  {
+    "case_id": "R02",
+    "before": {
+      "answer": "请求超时阈值为30秒。",
+      "citations": [
+        "b01"
+      ],
+      "evidence": [
+        {
+          "id": "b01",
+          "doc_id": "alpha",
+          "snapshot": "v1",
+          "page": 1,
+          "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "30"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "66cd7e9d-463d-4a7a-86a8-5c7f0755eddd",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": true,
+      "elapsed_ms": 0.011000000085914508,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "e22d42e5-720d-40eb-9ad5-0635fcba2cef",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [
+        {
+          "id": "b02",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 1,
+          "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "12"
+          ],
+          "block_id": "b02",
+          "locator": {
+            "page": 1,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "alpha",
+          "snapshot": "v2"
+        }
+      ],
+      "origin_request_id": "e22d42e5-720d-40eb-9ad5-0635fcba2cef",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "125123fbb3fd6b28360397055572cfcd1617e001b127ff8e033668bdbf6f2255",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b02",
+              "score": 3
+            },
+            {
+              "id": "b04",
+              "score": 0
+            },
+            {
+              "id": "b06",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b02"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "125123fbb3fd6b28360397055572cfcd1617e001b127ff8e033668bdbf6f2255",
+      "status": "ok",
+      "elapsed_ms": 0.06520000169984996
+    }
+  },
+  {
+    "case_id": "R03",
+    "before": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "3f02e3ea-b6e9-4a96-8841-a49c91b24b0a",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.014700000974698924,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "1abf7f01-d639-408d-abfc-374b290eda7b",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [
+        {
+          "id": "b03",
+          "doc_id": "beta",
+          "snapshot": "v1",
+          "page": 2,
+          "text": "实验B timeout 为5秒，与实验A无关。",
+          "tags": [
+            "timeout",
+            "5"
+          ],
+          "block_id": "b03",
+          "locator": {
+            "page": 2,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "beta",
+          "snapshot": "v1"
+        }
+      ],
+      "origin_request_id": "1abf7f01-d639-408d-abfc-374b290eda7b",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b03",
+              "score": 1
+            },
+            {
+              "id": "b05",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b03"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+      "status": "ok",
+      "elapsed_ms": 0.05580000106419902
+    }
+  },
+  {
+    "case_id": "R04",
+    "before": {
+      "answer": "点击取消就保证GPU立即停止计算并释放资源。",
+      "citations": [
+        "b04"
+      ],
+      "evidence": [
+        {
+          "id": "b04",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 2,
+          "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+          "tags": [
+            "cancel",
+            "gpu",
+            "resource"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "d577846c-68a3-4038-aefa-6ab91809cdcc",
+      "request": {
+        "query": "cancel gpu resource",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.016199999663513154,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "4c0eb90c-0628-4b5e-9bc6-afdc75c8bf6c",
+      "request": {
+        "query": "cancel gpu resource",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "点击取消就保证GPU立即停止计算并释放资源。",
+      "citations": [
+        "b04"
+      ],
+      "evidence": [
+        {
+          "id": "b04",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 2,
+          "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+          "tags": [
+            "cancel",
+            "gpu",
+            "resource"
+          ],
+          "block_id": "b04",
+          "locator": {
+            "page": 2,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "alpha",
+          "snapshot": "v2"
+        }
+      ],
+      "origin_request_id": "4c0eb90c-0628-4b5e-9bc6-afdc75c8bf6c",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "321e339f1d31792e62ca7c16599fcb20c3c3f5bad155065542eb2d233208da7b",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b04",
+              "score": 3
+            },
+            {
+              "id": "b02",
+              "score": 0
+            },
+            {
+              "id": "b06",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b04"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "321e339f1d31792e62ca7c16599fcb20c3c3f5bad155065542eb2d233208da7b",
+      "status": "ok",
+      "elapsed_ms": 0.054299998737405986
+    }
+  },
+  {
+    "case_id": "R05",
+    "before": {
+      "answer": "文档编号为beta。",
+      "citations": [
+        "b05"
+      ],
+      "evidence": [
+        {
+          "id": "b05",
+          "doc_id": "beta",
+          "snapshot": "v1",
+          "page": 3,
+          "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+          "tags": [
+            "metadata",
+            "beta"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "288f4c93-66a7-42c6-a47b-5e214e831baa",
+      "request": {
+        "query": "metadata beta",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.015600000551785342,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "45d765ea-1fb8-40ce-819c-e5d0ec8a5eba",
+      "request": {
+        "query": "metadata beta",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "文档编号为beta。",
+      "citations": [
+        "b05"
+      ],
+      "evidence": [
+        {
+          "id": "b05",
+          "doc_id": "beta",
+          "snapshot": "v1",
+          "page": 3,
+          "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+          "tags": [
+            "metadata",
+            "beta"
+          ],
+          "block_id": "b05",
+          "locator": {
+            "page": 3,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "beta",
+          "snapshot": "v1"
+        }
+      ],
+      "origin_request_id": "45d765ea-1fb8-40ce-819c-e5d0ec8a5eba",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "3720eaf30e21ca40412d98309797aaf77543e854f58be18b1f3fb4f9476bbedc",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b05",
+              "score": 2
+            },
+            {
+              "id": "b03",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b05"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "3720eaf30e21ca40412d98309797aaf77543e854f58be18b1f3fb4f9476bbedc",
+      "status": "ok",
+      "elapsed_ms": 0.05649999911838677
+    }
+  },
+  {
+    "case_id": "R06",
+    "before": {
+      "answer": "此材料未测试多worker性能。",
+      "citations": [
+        "b06"
+      ],
+      "evidence": [
+        {
+          "id": "b06",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 3,
+          "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+          "tags": [
+            "worker",
+            "single",
+            "process"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "78c7b220-a502-47d8-bc95-4bc5b03c8c4a",
+      "request": {
+        "query": "worker single process",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.015399999028886668,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "67a11c08-67ba-46fb-927c-9250380d951a",
+      "request": {
+        "query": "worker single process",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "此材料未测试多worker性能。",
+      "citations": [
+        "b06"
+      ],
+      "evidence": [
+        {
+          "id": "b06",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 3,
+          "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+          "tags": [
+            "worker",
+            "single",
+            "process"
+          ],
+          "block_id": "b06",
+          "locator": {
+            "page": 3,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "alpha",
+          "snapshot": "v2"
+        }
+      ],
+      "origin_request_id": "67a11c08-67ba-46fb-927c-9250380d951a",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "9150aec88857d64ad19fce49815780d134f848b571ee3f4abce79a44d3a71090",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b06",
+              "score": 3
+            },
+            {
+              "id": "b02",
+              "score": 0
+            },
+            {
+              "id": "b04",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b06"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "9150aec88857d64ad19fce49815780d134f848b571ee3f4abce79a44d3a71090",
+      "status": "ok",
+      "elapsed_ms": 0.05469999996421393
+    }
+  },
+  {
+    "case_id": "R07",
+    "before": {
+      "answer": "这个文档存在。",
+      "citations": [
+        "b05"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "6de92031-791e-4749-9f14-febbc2ddf3ee",
+      "request": {
+        "query": "metadata",
+        "doc_ids": [
+          "missing"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.014200000805431046,
+      "run_kind": "offline_replay"
+    },
+    "after": {
+      "request_id": "337b3b52-46c8-4df9-945f-1daf2354deda",
+      "request": {
+        "query": "metadata",
+        "doc_ids": [
+          "missing"
+        ],
+        "snapshot": "v1",
+        "k": 2
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": null,
+      "citations": [],
+      "evidence": [],
+      "locator_status": "absent",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [],
+      "origin_request_id": "337b3b52-46c8-4df9-945f-1daf2354deda",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": [
+            "missing"
+          ]
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "status": "invalid_scope",
+      "elapsed_ms": 0.01799999881768599
+    }
+  }
+]
