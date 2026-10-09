@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-09T08:15:51.321107+00:00",
+  "plan": {
+    "date": "2026-10-09",
+    "stage": "additional experiment planned after review, before its intervention runs",
+    "source_exposure": "Original source and earlier experiments already inspected; not blind discovery",
+    "symptom": "The alpha/v2 request with k=1 returns empty evidence although b02 matches",
+    "setup": "Run original R03 (beta/v1,k=1) to obtain an empty cached result naturally. Save that original cache and clone the identical starting state into each arm. Target is original R02 with k=1; original corpus and drafts unchanged.",
+    "hypotheses": {
+      "cache": "A prior empty result is reused because the key ignores scope. With warm cache and only scope-order repaired, evidence remains empty and cache_hit is true. With cache key repaired, cache_hit becomes false.",
+      "retrieval": "A newly calculated result can also be empty because b01 consumes the single global top-k slot before version filtering. With cache key repaired alone, the miss still produces empty evidence; with both repairs it selects b02."
+    },
+    "interpretation": "Compatible mechanisms, not mutually exclusive guesses. The cached result is the earliest boundary in the warm original request; the retrieval mechanism remains a latent failure after cache bypass.",
+    "predictions": {
+      "original": {
+        "cache_hit": true,
+        "evidence_ids": []
+      },
+      "cache_only": {
+        "cache_hit": false,
+        "evidence_ids": []
+      },
+      "scope_only": {
+        "cache_hit": true,
+        "evidence_ids": []
+      },
+      "both": {
+        "cache_hit": false,
+        "evidence_ids": [
+          "b02"
+        ]
+      }
+    },
+    "cold_controls": {
+      "original": [],
+      "scope_only": [
+        "b02"
+      ]
+    },
+    "negative_control": "With k=2 and the same warm empty cache, original still returns empty; cache-only repair restores b02 without any scope-order change. Thus the cache factor has an independently observable effect.",
+    "controls": "Same target input, corpus, draft and starting cache in all main arms. No editing draft, no model calls, no redefining the old experiments.",
+    "stop": "Preserve outputs and report mismatch if any prediction fails; do not rewrite the prediction after observing outputs."
+  },
+  "sha256": {
+    "configs/advanced_b_same_symptom_plan.json": "7593eadd0f92dae12c6c0a13d9fbe9685b7eeb83f4c25b8a0f3e2114b2ed8fba",
+    "scripts/check_b_same_symptom.py": "f1dbba912bcf11d50edf2fbbbfbff444fe69e933b55f5bab4a5312f855f2c1ca",
+    "进阶/challenge_b/challenge.py": "b84a035957ac457fb803c82f141c8684ccb5dbe9ff34c45bbb199ff613094ad1",
+    "进阶/challenge_b/diagnostic_engine.py": "14c78626bbb3808399bf7f0fe04395aaba7977847e2a667bab29f4e4dfc8dcb9",
+    "进阶/challenge_b/fixed_engine.py": "c33e640609b3191cf8bb8a219cde092a28b7c870f702dcb4d79c77e36f41dafd",
+    "进阶/challenge_b/data.json": "f3ba571d72e2836221ed3026ac764d8e0da569fc5b8bd895f702cbd2896296a4"
+  }
+}

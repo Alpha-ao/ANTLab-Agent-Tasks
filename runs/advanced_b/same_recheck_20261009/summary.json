@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "name": "natural_empty_cache",
+      "passed": true
+    },
+    {
+      "name": "original_same_symptom",
+      "passed": true
+    },
+    {
+      "name": "prediction/original",
+      "passed": true
+    },
+    {
+      "name": "prediction/cache_only",
+      "passed": true
+    },
+    {
+      "name": "prediction/scope_only",
+      "passed": true
+    },
+    {
+      "name": "prediction/both",
+      "passed": true
+    },
+    {
+      "name": "cold/original",
+      "passed": true
+    },
+    {
+      "name": "cold/scope_only",
+      "passed": true
+    },
+    {
+      "name": "negative_k2/original",
+      "passed": true
+    },
+    {
+      "name": "negative_k2/cache_only",
+      "passed": true
+    },
+    {
+      "name": "delivered_fix",
+      "passed": true
+    },
+    {
+      "name": "identical_main_input_and_state",
+      "passed": true
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "rows": [
+    {
+      "arm": "original",
+      "cache_hit": true,
+      "evidence_ids": [],
+      "run_id": "eb816eea-4a85-4e0b-819d-bfd991b50f5d"
+    },
+    {
+      "arm": "cache_only",
+      "cache_hit": false,
+      "evidence_ids": [],
+      "run_id": "cb409593-560d-4d1a-a791-8a6ea235cd19"
+    },
+    {
+      "arm": "scope_only",
+      "cache_hit": true,
+      "evidence_ids": [],
+      "run_id": "04f858d9-a9cf-4159-82eb-2166aa6dc83f"
+    },
+    {
+      "arm": "both",
+      "cache_hit": false,
+      "evidence_ids": [
+        "b02"
+      ],
+      "run_id": "976a55b3-a98e-4d6c-87a5-4b414a8f4d1e"
+    }
+  ],
+  "conclusion": "Two mechanisms can yield the same empty evidence. Warm cache hides the remaining scope-order defect; both fixes are required for this starting state."
+}

@@ -1,0 +1,16 @@
+{
+  "block_mapping": {
+    "b01": "renamed_b01",
+    "b02": "renamed_b02",
+    "b03": "renamed_b03",
+    "b04": "renamed_b04",
+    "b05": "renamed_b05",
+    "b06": "renamed_b06"
+  },
+  "document_mapping": {
+    "alpha": "doc_x",
+    "beta": "doc_y"
+  },
+  "order": "reverse corpus",
+  "expected": "same answer and corresponding evidence"
+}
