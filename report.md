@@ -34,6 +34,13 @@ https://developers.llamaindex.ai/python/examples/query_engine/citation_query_eng
 
 ## 3. 实验设计
 
+**二次审查补正**：下述首轮四条件覆盖两个不同症状，不能单独满足“同一症状的两个原因”要求。
+为此另建configs/advanced_b_same_symptom_plan.json，在对应运行前保存预测，执行记录见runs/advanced_b/same_symptom。
+统一症状为alpha/v2、k=1返回空证据。用未修改原样机运行R03，自然生成一个空结果缓存；四组都从它的同一副本开始，目标请求、资料和draft完全相同。
+H1认为空缓存被错误复用；H2认为即使重新计算，全库先截取k=1也会丢失b02。两者都与源码和初始症状相容，但作用边界不同。
+预测：仅改范围仍命中空缓存；仅改缓存会重新算出空证据；两处都改恢复b02。冷启动对照和k=2负对照用于分离两机制。
+这是看到源码和先前结果后的追加实验，不称盲发现，也不改写首轮记录。
+
 研究对象是合成离线Engine，固定draft有意包含错误。所有输入公开、已读源码，不称盲测。
 事前预测在configs/advanced_b_plan.json和work/deep-interview/advanced-b.md；实际运行哈希在runs/advanced_b/verification/manifest.json。
 
@@ -88,7 +95,26 @@ DeepSeek扩展为3类故障×3种信息条件：仅现象、现象＋作者提�
 反向检查：精确缓存逐步与无缓存执行比较，答案/证据/状态一致；重复请求ID不同且来源ID可追溯。离线时间不代表LLM速度；没有用更快作为修复成功依据。全not_checked只消除虚假验证，不能当作语义正确率提高。
 浏览器实测原版v1→v2仍30秒、修复版30→12秒；手工输入v999得到invalid_scope。各次原始日志在runs/advanced_b/ui。
 
-### 外部信息诊断
+### 同一症状的追加结果
+
+下表来源runs/advanced_b/same_symptom/summary.json；输入、初始缓存和每次request_id见raw.json。复跑命令：python scripts/check_b_same_symptom.py --label independent_review（目录需不存在）。
+
+| 条件（同一v2/k=1请求） | 是否复用旧缓存 | 证据 |
+|---|---|---|
+| 原版 | 是 | 空 |
+| 只修缓存 | 否 | 空 |
+| 只修检索 | 是 | 空 |
+| 两处都修 | 否 | b02 |
+
+冷启动原版仍为空，冷启动且修检索得到b02，证明重新计算也可能失败。
+改用k=2且保留同一初始缓存时，原版为空，仅修缓存即恢复b02，表明缓存机制有可独立观察的作用。
+因此，暖缓存请求的最早错误在复用边界；消除此错误后，检索顺序仍可使同一症状持续。新增12项检查通过。
+
+页面补测5项通过：{}请求、非法JSON、正常版本演示、演示后单次执行、模式切换。见results/advanced_b/ui-review-checks.json及ui-error-fixed.png。
+接口对JSON数组/null/数字/字符串返回400，原版模式缺字段也明确拒绝。服务已重启加载修正。
+跨系统路径读取修复后，在Ubuntu WSL、Python 3.12.3对同一工作目录实际复跑39项与12项检查及单元测试；并非一台全新Linux服务器或全新GitHub克隆的验证。见results/advanced_b/linux-review.json。
+
+### 外部信息诊断（辅助观察，不作为有效性证明）
 
 逐例输出及Codex定性复核在results/advanced_b/summary.json、paired.md；复算python scripts/summarize_b.py。不用关键词打出虚假的诊断准确率。
 有具体证据时，模型将b01/b02和cache_hit用于版本诊断，将中间候选轨迹用于漏检诊断，将未测量GPU释放的原文用于反驳强断言。

@@ -1,0 +1,13 @@
+{
+  "timeout request threshold": {
+    "answer": "实验B超时为5秒。",
+    "citations": [
+      "b03"
+    ],
+    "evidence": [],
+    "locator_status": "invalid",
+    "support_status": "not_checked",
+    "judgment_source": "rule",
+    "status": "ok"
+  }
+}

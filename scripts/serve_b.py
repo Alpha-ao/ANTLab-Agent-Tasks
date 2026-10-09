@@ -44,10 +44,22 @@ class Handler(BaseHTTPRequestHandler):
         try:
             size=int(self.headers.get('Content-Length','0'))
             if not 0<size<=65536:raise ValueError('invalid_size')
-            body=json.loads(self.rfile.read(size));mode=body.get('mode','fixed')
+            body=json.loads(self.rfile.read(size))
+            if not isinstance(body,dict):raise ValueError('body_must_be_object')
+            mode=body.get('mode','fixed')
             if mode not in ENGINES:raise ValueError('invalid_mode')
             req=body['request'];draft=body['draft']
             if not isinstance(req,dict) or not isinstance(draft,dict):raise ValueError('invalid_input')
+            if mode=='original' and (
+                not isinstance(req.get('query'),str)
+                or not isinstance(req.get('doc_ids'),list)
+                or any(not isinstance(d,str) for d in req['doc_ids'])
+                or not isinstance(req.get('snapshot'),str)
+                or type(req.get('k')) is not int
+                or not isinstance(draft.get('answer'),str)
+                or not isinstance(draft.get('citations'),list)
+                or any(not isinstance(c,str) for c in draft['citations'])):
+                raise ValueError('invalid_input')
             if body.get('reset'):ENGINES[mode].cache.clear()
             out=ENGINES[mode].evaluate(req,copy.deepcopy(DATA['corpus']),draft)
             record={'mode':mode,'reset':bool(body.get('reset')),'request':req,'draft':draft,'corpus':DATA['corpus'],'output':out}

@@ -1,0 +1,22 @@
+[
+  {
+    "arm": "original",
+    "warm_v2_stale": true,
+    "cold_v2_k1_missing": true
+  },
+  {
+    "arm": "cache_only",
+    "warm_v2_stale": false,
+    "cold_v2_k1_missing": true
+  },
+  {
+    "arm": "scope_only",
+    "warm_v2_stale": true,
+    "cold_v2_k1_missing": false
+  },
+  {
+    "arm": "both",
+    "warm_v2_stale": false,
+    "cold_v2_k1_missing": false
+  }
+]

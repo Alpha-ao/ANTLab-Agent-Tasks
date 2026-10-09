@@ -2,6 +2,11 @@
 
 ## 当前交付（2026-10-09）
 
+二次审查后的修正：新增针对同一“v2证据为空”症状的四条件对照，12项检查通过；原39项保留。
+网页已修复空请求/错误JSON渲染、旧结果和旧演示顺序残留，并直接显示核验来源。
+Ubuntu WSL / Python 3.12.3已实际复跑39项＋12项和单元测试；记录见results/advanced_b/linux-review.json。
+原9次模型诊断仅作为辅助观察，不计算反馈提升率；本轮没有新增API费用。
+
 B题已完成本地诊断、修复与浏览器验证；基础历史结果保留。
 主问题是版本切换误用旧缓存，另修正范围外条目挤占检索名额和虚假supported状态。
 39项离线检查通过；DeepSeek V4.1 Flash新增9次真实诊断请求，无自动重试。
@@ -15,6 +20,7 @@ B题已完成本地诊断、修复与浏览器验证；基础历史结果保留�
 python scripts/serve_b.py --port 8769
 # 另一个终端运行；离线，不收费。label不得复用已有目录。
 python scripts/check_advanced_b.py --label my_review_01
+python scripts/check_b_same_symptom.py --label my_same_symptom_01
 python scripts/summarize_b.py
 python scripts/audit_b.py
 ```
@@ -30,6 +36,8 @@ Python 3.10+，标准库即可。本机实测Python 3.14。
 上游基点b028d90f43f44585cf085a3f607516a94f485e88；本人工作由Codex辅助，尚需用户亲自核验。
 查看全部改动：`git diff b028d90f43f44585cf085a3f607516a94f485e88 HEAD`；最终本地版本：`git rev-parse HEAD`。
 尚未完成个人GitHub Fork/推送、收集表与独立人工复核；这些不以本地运行代替。
+
+历史manifest保持不变。跨系统读取同时支持Windows和POSIX相对路径；补充manifest只允许CRLF/LF换行等价，不忽略代码或数据内容变化。
 
 ## 基础推荐版本（2026-10-08历史记录）
 

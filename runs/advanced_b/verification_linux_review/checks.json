@@ -1,0 +1,203 @@
+{
+  "checks": [
+    {
+      "name": "prediction/original",
+      "passed": true,
+      "expected_basis": "事前四条件预测"
+    },
+    {
+      "name": "prediction/cache_only",
+      "passed": true,
+      "expected_basis": "事前四条件预测"
+    },
+    {
+      "name": "prediction/scope_only",
+      "passed": true,
+      "expected_basis": "事前四条件预测"
+    },
+    {
+      "name": "prediction/both",
+      "passed": true,
+      "expected_basis": "事前四条件预测"
+    },
+    {
+      "name": "R02/version",
+      "passed": true,
+      "expected_basis": "v2原文为12秒，引用b02"
+    },
+    {
+      "name": "R03/scope_before_topk",
+      "passed": true,
+      "expected_basis": "beta/v1唯一正分证据b03"
+    },
+    {
+      "name": "R04/no_false_verification",
+      "passed": true,
+      "expected_basis": "未测量GPU释放，不能凭ID判supported"
+    },
+    {
+      "name": "R07/invalid_scope",
+      "passed": true,
+      "expected_basis": "不存在文档不得返回合成draft作为正常答案"
+    },
+    {
+      "name": "normal/R05",
+      "passed": true,
+      "expected_basis": "保持正常答案与引用；语义状态如实降为未核验"
+    },
+    {
+      "name": "normal/R06",
+      "passed": true,
+      "expected_basis": "保持正常答案与引用；语义状态如实降为未核验"
+    },
+    {
+      "name": "instrumentation/R01",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R02",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R03",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R04",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R05",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R06",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "instrumentation/R07",
+      "passed": true,
+      "expected_basis": "插桩不改变原样机语义输出"
+    },
+    {
+      "name": "cache_equivalence/0",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/1",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/2",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/3",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/4",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/5",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/6",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "cache_equivalence/7",
+      "passed": true,
+      "expected_basis": "缓存不能改变同输入无缓存计算结果"
+    },
+    {
+      "name": "repeat/hit",
+      "passed": true,
+      "expected_basis": "重复请求可复用内容但请求ID独立"
+    },
+    {
+      "name": "mutation_protection",
+      "passed": true,
+      "expected_basis": "返回对象修改不能污染缓存"
+    },
+    {
+      "name": "variant/order",
+      "passed": true,
+      "expected_basis": "输入语料逆序不改变规定排序"
+    },
+    {
+      "name": "variant/ids",
+      "passed": true,
+      "expected_basis": "一致重映射保留关系与字典序"
+    },
+    {
+      "name": "boundary/missing_version",
+      "passed": true,
+      "expected_basis": "每个指定文档都必须存在该快照"
+    },
+    {
+      "name": "boundary/partial_scope",
+      "passed": true,
+      "expected_basis": "每个指定文档都必须存在该快照"
+    },
+    {
+      "name": "multi_document",
+      "passed": true,
+      "expected_basis": "多个合法文档均参与范围内排序"
+    },
+    {
+      "name": "citation/empty",
+      "passed": true,
+      "expected_basis": "无引用与越界引用分开"
+    },
+    {
+      "name": "citation/outside",
+      "passed": true,
+      "expected_basis": "无引用与越界引用分开"
+    },
+    {
+      "name": "no_match",
+      "passed": true,
+      "expected_basis": "合法范围内无正分条目不补入不相关资料"
+    },
+    {
+      "name": "duplicate_id",
+      "passed": true,
+      "expected_basis": "引用ID歧义必须拒绝"
+    },
+    {
+      "name": "invalid_k/0",
+      "passed": true,
+      "expected_basis": "k必须是1至100的整数，布尔值不是整数参数"
+    },
+    {
+      "name": "invalid_k/True",
+      "passed": true,
+      "expected_basis": "k必须是1至100的整数，布尔值不是整数参数"
+    },
+    {
+      "name": "invalid_k/2",
+      "passed": true,
+      "expected_basis": "k必须是1至100的整数，布尔值不是整数参数"
+    }
+  ],
+  "passed": 39,
+  "total": 39,
+  "raw_records": 58,
+  "run_kind": "offline_replay"
+}

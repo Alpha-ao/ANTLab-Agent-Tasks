@@ -1,0 +1,26 @@
+{
+  "method": "Actual browser controls and read-only DOM assertions",
+  "checks": [
+    {
+      "case": "empty_request",
+      "passed": true,
+      "requestLog": "查看原始日志 · 4a7d119e-cec0-45a4-9f10-255fcf2e52b2"
+    },
+    {
+      "case": "invalid_json",
+      "passed": true
+    },
+    {
+      "case": "normal_sequence",
+      "passed": true
+    },
+    {
+      "case": "single_after_sequence",
+      "passed": true
+    },
+    {
+      "case": "mode_change",
+      "passed": true
+    }
+  ]
+}

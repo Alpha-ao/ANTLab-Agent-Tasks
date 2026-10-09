@@ -1,0 +1,53 @@
+{
+  "notice": "Supplementary manifest produced after verifying every historical raw hash; only CRLF/LF normalization allowed. Original manifests retained.",
+  "files": {
+    "进阶/challenge_b/challenge.py": {
+      "historical_raw_sha256": "b84a035957ac457fb803c82f141c8684ccb5dbe9ff34c45bbb199ff613094ad1",
+      "lf_sha256": "c2905f88c9456ccd732822c4813daa6d1d4bb966493bea53a0777bba097ea4f7"
+    },
+    "进阶/challenge_b/diagnostic_engine.py": {
+      "historical_raw_sha256": "14c78626bbb3808399bf7f0fe04395aaba7977847e2a667bab29f4e4dfc8dcb9",
+      "lf_sha256": "14c78626bbb3808399bf7f0fe04395aaba7977847e2a667bab29f4e4dfc8dcb9"
+    },
+    "进阶/challenge_b/fixed_engine.py": {
+      "historical_raw_sha256": "c33e640609b3191cf8bb8a219cde092a28b7c870f702dcb4d79c77e36f41dafd",
+      "lf_sha256": "c33e640609b3191cf8bb8a219cde092a28b7c870f702dcb4d79c77e36f41dafd"
+    },
+    "进阶/challenge_b/run_cases.py": {
+      "historical_raw_sha256": "4ec45de9be156112f86ac8fdc38ca7f8c9c2be00e7c44f924671329dc1e16dac",
+      "lf_sha256": "a313e2491ec217782ccc71998cb03e9d6c18c5137197fc74851bc1abd9df0cd3"
+    },
+    "进阶/challenge_b/server.py": {
+      "historical_raw_sha256": "8386dc4319538c45abe1686961f0b562f4f41325c8d92bfc50297bb66c81f4c4",
+      "lf_sha256": "52500ac11026e03106ebd93e9d89b0e2920c502a2d5d68b8000b8fd9202ea4de"
+    },
+    "进阶/challenge_b/data.json": {
+      "historical_raw_sha256": "f3ba571d72e2836221ed3026ac764d8e0da569fc5b8bd895f702cbd2896296a4",
+      "lf_sha256": "29c67a802747aba5dcf2d22af2d8c16fd151d0adb86e7d30da0eef084b9461c6"
+    },
+    "configs/advanced_b_plan.json": {
+      "historical_raw_sha256": "15fc67484ff019a61d10c4d6cd2114d9680d2a8e6066c38de0e30b067fdb1d8f",
+      "lf_sha256": "15fc67484ff019a61d10c4d6cd2114d9680d2a8e6066c38de0e30b067fdb1d8f"
+    },
+    "scripts/check_advanced_b.py": {
+      "historical_raw_sha256": "040aa19badb9f8d353dbe961a6edf8823ccbb91b40aa99f0f5e3f60ad347b628",
+      "lf_sha256": "040aa19badb9f8d353dbe961a6edf8823ccbb91b40aa99f0f5e3f60ad347b628"
+    },
+    "scripts/run_b_feedback.py": {
+      "historical_raw_sha256": "5d9d6974b831f7f2ef73b2f9a951c9a09a310bbf64bbbba1ad2493b4bfa3950c",
+      "lf_sha256": "5d9d6974b831f7f2ef73b2f9a951c9a09a310bbf64bbbba1ad2493b4bfa3950c"
+    },
+    "基础/starter/provider.py": {
+      "historical_raw_sha256": "b573f2359ad7e7a2818f9c8ba07952d4d7bfb2854a6d7e14b509da27dcf9c761",
+      "lf_sha256": "ca3ca76c888a04a99f0451bb39ba4e1fb9a21f3d31810c0c80520a20eb5aa92a"
+    },
+    "configs/advanced_b_same_symptom_plan.json": {
+      "historical_raw_sha256": "7593eadd0f92dae12c6c0a13d9fbe9685b7eeb83f4c25b8a0f3e2114b2ed8fba",
+      "lf_sha256": "7593eadd0f92dae12c6c0a13d9fbe9685b7eeb83f4c25b8a0f3e2114b2ed8fba"
+    },
+    "scripts/check_b_same_symptom.py": {
+      "historical_raw_sha256": "f1dbba912bcf11d50edf2fbbbfbff444fe69e933b55f5bab4a5312f855f2c1ca",
+      "lf_sha256": "f1dbba912bcf11d50edf2fbbbfbff444fe69e933b55f5bab4a5312f855f2c1ca"
+    }
+  }
+}

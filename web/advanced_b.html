@@ -13,17 +13,104 @@
 <button id="run">执行当前请求</button><button class="secondary" id="sequence">版本切换演示</button>
 <p><small>版本演示依次查询 v1 → v2，保留两次响应。可分别在原版和修复版运行。</small></p><div id="status" role="status"></div></section>
 <section class="card"><h2>实际结果</h2><div id="empty" class="sub">选择案例后执行，查看答案、来源版本和核验状态。</div><div id="output" hidden><div id="scope" class="banner"></div><div id="answer" class="answer"></div><div id="tags" class="tags"></div><div id="support" class="banner"></div><div id="evidence"></div><div id="log" class="history"></div><details><summary>本次后端完整结果与处理轨迹</summary><pre id="raw"></pre></details></div><div id="history" class="history"></div></section></div>
-<section class="card wide"><h2>外部信息怎样影响诊断</h2><p class="sub">同一故障，分别提供“现象”“类别”“具体证据”。这是模型诊断对照，不是自动修复成功率。</p><label for="feedbackCase">诊断故障</label><select id="feedbackCase"><option value="version">版本与缓存</option><option value="retrieval">检索漏证据</option><option value="support">引用不支持回答</option></select><div class="feedback" id="feedback"></div></section></main>
+<section class="card wide"><h2>外部信息怎样影响诊断</h2><p class="sub">同一故障，分别提供“现象”“类别”“具体证据”。这是3个已知故障的辅助观察，不是自动修复成功率。“返回30秒”的现象描述有歧义，因此不能据此计算反馈带来的提升。</p><label for="feedbackCase">诊断故障</label><select id="feedbackCase"><option value="version">版本与缓存</option><option value="retrieval">检索漏证据</option><option value="support">引用不支持回答</option></select><div class="feedback" id="feedback"></div></section></main>
 <script>
-const $=id=>document.getElementById(id);let data,feedback=[];const names={symptom:'只有现象',category:'现象＋错误类别',evidence:'现象＋类别＋具体证据'};
-function loadCase(i){const c=data.cases[i];$('request').value=JSON.stringify(c.request,null,2);$('draft').value=JSON.stringify(c.draft,null,2)}
-function show(r){$('empty').hidden=true;$('output').hidden=false;const actual=[...new Set(r.evidence.map(b=>b.doc_id+'/'+b.snapshot))].join('、')||'无证据';const requested=r.request.doc_ids.join('、')+'/'+r.request.snapshot;const mismatch=r.evidence.some(b=>!r.request.doc_ids.includes(b.doc_id)||b.snapshot!==r.request.snapshot);$('scope').textContent='请求：'+requested+' ｜ 实际来源：'+actual;$('scope').className='banner'+(mismatch?' bad':'');$('answer').textContent=r.answer??'请求已拒绝';$('tags').replaceChildren();for(const t of ['状态：'+r.status,'缓存：'+(r.cache_hit?'命中':'未命中'),'引用定位：'+r.locator_status,'耗时：'+r.elapsed_ms.toFixed(3)+' ms']){let s=document.createElement('span');s.className='tag';s.textContent=t;$('tags').append(s)}$('support').textContent=r.support_status==='supported'?'原样机声称 supported：该状态只按引用编号产生，不可信。':'语义支持：尚未核验。不能据此认定回答正确或错误。';$('support').className='banner'+(r.support_status==='supported'?' bad':'');$('evidence').replaceChildren();for(const b of r.evidence){let d=document.createElement('div');d.className='evidence';let s=document.createElement('small');s.textContent=b.id+' · '+b.doc_id+'/'+b.snapshot+' · 第'+b.page+'页';let p=document.createElement('p');p.textContent=b.text;d.append(s,p);$('evidence').append(d)}$('raw').textContent=JSON.stringify(r,null,2);let a=document.createElement('a');a.href='/api/log/'+r.request_id;a.target='_blank';a.textContent='查看原始日志 · '+r.request_id;$('log').replaceChildren(a)}
-async function send(req,draft,reset){const res=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:$('mode').value,request:req,draft,reset})});const r=await res.json();if(!res.ok)throw Error(r.error);show(r);return r}
-async function busy(fn){$('run').disabled=$('sequence').disabled=true;$('status').textContent='后端处理中…';try{await fn();$('status').textContent='运行完成，原始记录已保存。'}catch(e){$('status').textContent='运行停止：'+e.message}finally{$('run').disabled=$('sequence').disabled=false}}
-$('run').onclick=()=>busy(async()=>{await send(JSON.parse($('request').value),JSON.parse($('draft').value),$('reset').checked)});
-$('sequence').onclick=()=>busy(async()=>{let rows=[];for(const i of [0,1]){loadCase(i);$('case').value=i;rows.push(await send(data.cases[i].request,data.cases[i].draft,i===0))}$('history').textContent='本次顺序：'+rows.map(r=>r.request.snapshot+' → '+r.answer+' ['+r.evidence.map(b=>b.id).join(',')+']').join('； ')});
-$('case').onchange=()=>loadCase(Number($('case').value));
-function showFeedback(){ $('feedback').replaceChildren();for(const arm of ['symptom','category','evidence']){const r=feedback.find(x=>x.case_id===$('feedbackCase').value&&x.arm===arm);let box=document.createElement('article'),h=document.createElement('strong');h.textContent=names[arm];box.append(h);if(r?.output){for(const [title,k] of [['诊断','diagnosis'],['建议检查','proposed_check'],['修复方向','repair_direction']]){let p=document.createElement('p');p.textContent=title+'：'+r.output[k];box.append(p)}let small=document.createElement('small');small.textContent='live_api · '+r.run_id;box.append(small)}else{let p=document.createElement('p');p.textContent='尚无成功记录';box.append(p)}$('feedback').append(box)}}
+const $=id=>document.getElementById(id);
+let data,feedback=[];
+const names={symptom:'只有现象',category:'现象＋错误类别',evidence:'现象＋类别＋具体证据'};
+const modeNames={original:'原样机',fixed:'修复版'};
+function clearResult(message='输入已改变，请重新执行。'){
+  $('output').hidden=true;
+  $('empty').hidden=false;
+  $('empty').textContent=message;
+  $('history').textContent='';
+  $('status').textContent='';
+  $('log').replaceChildren();
+  $('raw').textContent='';
+}
+function loadCase(i){
+  const c=data.cases[i];
+  $('request').value=JSON.stringify(c.request,null,2);
+  $('draft').value=JSON.stringify(c.draft,null,2);
+}
+function show(r,mode){
+  const req=r.request&&typeof r.request==='object'?r.request:{};
+  const docs=Array.isArray(req.doc_ids)?req.doc_ids:[];
+  const evidence=Array.isArray(r.evidence)?r.evidence:[];
+  const actual=[...new Set(evidence.map(b=>b.doc_id+'/'+b.snapshot))].join('、')||'无证据';
+  const requested=(docs.length?docs.join('、'):'未提供文档')+'/'+(typeof req.snapshot==='string'?req.snapshot:'未提供版本');
+  const mismatch=evidence.some(b=>!docs.includes(b.doc_id)||b.snapshot!==req.snapshot);
+  $('empty').hidden=true;$('output').hidden=false;
+  $('scope').textContent='请求：'+requested+' ｜ 实际来源：'+actual;
+  $('scope').className='banner'+(mismatch||r.status!=='ok'?' bad':'');
+  $('answer').textContent=r.answer??('请求已拒绝：'+r.status);
+  $('tags').replaceChildren();
+  const tags=['处理方式：'+modeNames[mode],'状态：'+r.status,'缓存：'+(r.cache_hit?'命中':'未命中'),
+    '引用定位：'+r.locator_status,'核验来源：'+(r.judgment_source||'未提供'),
+    '耗时：'+(Number.isFinite(r.elapsed_ms)?r.elapsed_ms.toFixed(3):'未知')+' ms'];
+  for(const t of tags){const s=document.createElement('span');s.className='tag';s.textContent=t;$('tags').append(s)}
+  $('support').textContent=r.support_status==='supported'
+    ?'原样机声称 supported：该状态只按引用编号产生，不可信。'
+    :'语义支持：尚未核验。引用规则检查不能代替内容核验。';
+  $('support').className='banner'+(r.support_status==='supported'?' bad':'');
+  $('evidence').replaceChildren();
+  for(const b of evidence){
+    const d=document.createElement('div');d.className='evidence';
+    const s=document.createElement('small');s.textContent=b.id+' · '+b.doc_id+'/'+b.snapshot+' · 第'+b.page+'页';
+    const p=document.createElement('p');p.textContent=b.text;d.append(s,p);$('evidence').append(d);
+  }
+  $('raw').textContent=JSON.stringify(r,null,2);
+  const a=document.createElement('a');a.href='/api/log/'+r.request_id;a.target='_blank';
+  a.textContent='查看原始日志 · '+r.request_id;$('log').replaceChildren(a);
+}
+async function send(req,draft,reset,mode){
+  const res=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode,request:req,draft,reset})});
+  const r=await res.json();if(!res.ok)throw Error(r.error);
+  show(r,mode);return r;
+}
+async function busy(fn){
+  const controls=['run','sequence','case','mode','request','draft','reset'];
+  const mode=$('mode').value;
+  clearResult('正在处理本次请求…');
+  controls.forEach(id=>$(id).disabled=true);$('status').textContent='后端处理中…';
+  try{
+    const last=await fn(mode);
+    $('status').textContent=last.status==='ok'?'运行完成，原始记录已保存。':'请求未通过检查：'+last.status+'；原始记录已保存。';
+  }catch(e){
+    clearResult('本次运行失败，未展示旧结果。');
+    $('status').textContent='运行停止：'+e.message;
+  }finally{controls.forEach(id=>$(id).disabled=false)}
+}
+$('run').onclick=()=>busy(mode=>send(JSON.parse($('request').value),JSON.parse($('draft').value),$('reset').checked,mode));
+$('sequence').onclick=()=>busy(async mode=>{
+  const rows=[];
+  for(const i of [0,1]){loadCase(i);$('case').value=i;rows.push(await send(data.cases[i].request,data.cases[i].draft,i===0,mode))}
+  $('history').textContent='本次顺序（'+modeNames[mode]+'）：'+rows.map(r=>r.request.snapshot+' → '+r.answer+' ['+r.evidence.map(b=>b.id).join(',')+']').join('； ');
+  return rows.at(-1);
+});
+$('case').onchange=()=>{loadCase(Number($('case').value));clearResult()};
+$('mode').onchange=()=>clearResult('处理方式已改变，请重新执行。');
+for(const id of ['request','draft'])$(id).addEventListener('input',()=>clearResult());
+function showFeedback(){
+  $('feedback').replaceChildren();
+  for(const arm of ['symptom','category','evidence']){
+    const r=feedback.find(x=>x.case_id===$('feedbackCase').value&&x.arm===arm);
+    const box=document.createElement('article'),h=document.createElement('strong');h.textContent=names[arm];box.append(h);
+    if(r?.output){
+      for(const [title,k] of [['诊断','diagnosis'],['建议检查','proposed_check'],['修复方向','repair_direction']]){
+        const p=document.createElement('p');p.textContent=title+'：'+r.output[k];box.append(p);
+      }
+      const small=document.createElement('small');small.textContent='live_api · '+r.run_id;box.append(small);
+    }else{const p=document.createElement('p');p.textContent='尚无成功记录';box.append(p)}
+    $('feedback').append(box);
+  }
+}
 $('feedbackCase').onchange=showFeedback;
-(async()=>{data=await(await fetch('/api/data')).json();for(let i=0;i<data.cases.length;i++){let o=document.createElement('option');o.value=i;o.textContent=data.cases[i].id+' · '+data.cases[i].request.query;$('case').append(o)}loadCase(0);feedback=await(await fetch('/api/feedback')).json();showFeedback()})().catch(e=>$('status').textContent='加载失败：'+e.message);
+(async()=>{
+  data=await(await fetch('/api/data')).json();
+  for(let i=0;i<data.cases.length;i++){
+    const o=document.createElement('option');o.value=i;o.textContent=data.cases[i].id+' · '+data.cases[i].request.query;$('case').append(o);
+  }
+  loadCase(0);feedback=await(await fetch('/api/feedback')).json();showFeedback();
+})().catch(e=>$('status').textContent='加载失败：'+e.message);
 </script></html>

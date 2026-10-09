@@ -1,0 +1,1841 @@
+[
+  {
+    "name": "original_warmup",
+    "input": {
+      "id": "R03",
+      "reset_before": true,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "draft": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {},
+    "output": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "ea1b48f8-2060-4b07-b34b-f68c215ba38c",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.03647299999443021,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "original_target",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "c432f424-094f-499b-af85-c7f43a7b6f48",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": true,
+      "elapsed_ms": 0.02520500000002812,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "original",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "c6d0008f-4fc7-4471-b735-1c0a16174634",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": true,
+      "elapsed_ms": 0.02240400000630416,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "cache_only",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "trace": {
+        "ranked": [
+          "b01",
+          "b02",
+          "b03",
+          "b04",
+          "b05",
+          "b06"
+        ],
+        "selected_before_final_scope": [
+          "b01"
+        ]
+      },
+      "request_id": "35a95ecc-c04c-4af9-8f57-065a8e54976f",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.09715599999537972,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "scope_only",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "57d8a91b-03cd-477e-ba36-df18fe79312c",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": true,
+      "elapsed_ms": 0.02186799999037703,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "both",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [
+        {
+          "id": "b02",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 1,
+          "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "12"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "trace": {
+        "ranked": [
+          "b02",
+          "b04",
+          "b06"
+        ],
+        "selected_before_final_scope": [
+          "b02"
+        ]
+      },
+      "request_id": "a8c2190d-4056-44df-889e-6ecc71e61c94",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.11434900000040216,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "cold/original",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {},
+    "output": {
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "trace": {
+        "ranked": [
+          "b01",
+          "b02",
+          "b03",
+          "b04",
+          "b05",
+          "b06"
+        ],
+        "selected_before_final_scope": [
+          "b01"
+        ]
+      },
+      "request_id": "797ad587-439a-4269-aea0-9334971bb5a1",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.04097000000058415,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "cold/scope_only",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {},
+    "output": {
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [
+        {
+          "id": "b02",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 1,
+          "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "12"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "trace": {
+        "ranked": [
+          "b02",
+          "b04",
+          "b06"
+        ],
+        "selected_before_final_scope": [
+          "b02"
+        ]
+      },
+      "request_id": "e3423958-35f7-4f1c-86c3-dd0e6b26fe35",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.05482299999925999,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "negative_k2/original",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [],
+      "locator_status": "invalid",
+      "support_status": "not_checked",
+      "judgment_source": "rule",
+      "status": "ok",
+      "request_id": "9b84f11e-fcb1-4ae6-976b-5102cda5e21b",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": true,
+      "elapsed_ms": 0.02215299998908904,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "negative_k2/cache_only",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "timeout request threshold": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [],
+        "locator_status": "invalid",
+        "support_status": "not_checked",
+        "judgment_source": "rule",
+        "status": "ok"
+      }
+    },
+    "output": {
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [
+        {
+          "id": "b02",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 1,
+          "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "12"
+          ]
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "supported",
+      "judgment_source": "rule",
+      "status": "ok",
+      "trace": {
+        "ranked": [
+          "b01",
+          "b02",
+          "b03",
+          "b04",
+          "b05",
+          "b06"
+        ],
+        "selected_before_final_scope": [
+          "b01",
+          "b02"
+        ]
+      },
+      "request_id": "18e8399a-41b7-4039-8082-d0e183358445",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 2
+      },
+      "cache_hit": false,
+      "elapsed_ms": 0.0849810000005391,
+      "run_kind": "offline_replay"
+    }
+  },
+  {
+    "name": "fixed_warmup",
+    "input": {
+      "id": "R03",
+      "reset_before": true,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "draft": {
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {},
+    "output": {
+      "request_id": "37973547-18c8-4f4b-b412-1836ef6d511d",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "beta"
+        ],
+        "snapshot": "v1",
+        "k": 1
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "实验B超时为5秒。",
+      "citations": [
+        "b03"
+      ],
+      "evidence": [
+        {
+          "id": "b03",
+          "doc_id": "beta",
+          "snapshot": "v1",
+          "page": 2,
+          "text": "实验B timeout 为5秒，与实验A无关。",
+          "tags": [
+            "timeout",
+            "5"
+          ],
+          "block_id": "b03",
+          "locator": {
+            "page": 2,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "beta",
+          "snapshot": "v1"
+        }
+      ],
+      "origin_request_id": "37973547-18c8-4f4b-b412-1836ef6d511d",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b03",
+              "score": 1
+            },
+            {
+              "id": "b05",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b03"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+      "status": "ok",
+      "elapsed_ms": 0.10585999999079831
+    }
+  },
+  {
+    "name": "fixed_target",
+    "input": {
+      "id": "R02",
+      "reset_before": false,
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "draft": {
+        "answer": "请求超时阈值为12秒。",
+        "citations": [
+          "b02"
+        ],
+        "origin": "synthetic_fixture"
+      }
+    },
+    "corpus": [
+      {
+        "id": "b01",
+        "doc_id": "alpha",
+        "snapshot": "v1",
+        "page": 1,
+        "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "30"
+        ]
+      },
+      {
+        "id": "b02",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 1,
+        "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+        "tags": [
+          "timeout",
+          "request",
+          "threshold",
+          "12"
+        ]
+      },
+      {
+        "id": "b03",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 2,
+        "text": "实验B timeout 为5秒，与实验A无关。",
+        "tags": [
+          "timeout",
+          "5"
+        ]
+      },
+      {
+        "id": "b04",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 2,
+        "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+        "tags": [
+          "cancel",
+          "gpu",
+          "resource"
+        ]
+      },
+      {
+        "id": "b05",
+        "doc_id": "beta",
+        "snapshot": "v1",
+        "page": 3,
+        "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+        "tags": [
+          "metadata",
+          "beta"
+        ]
+      },
+      {
+        "id": "b06",
+        "doc_id": "alpha",
+        "snapshot": "v2",
+        "page": 3,
+        "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+        "tags": [
+          "worker",
+          "single",
+          "process"
+        ]
+      }
+    ],
+    "cache_before": {
+      "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605": {
+        "request_id": "37973547-18c8-4f4b-b412-1836ef6d511d",
+        "request": {
+          "query": "timeout request threshold",
+          "doc_ids": [
+            "beta"
+          ],
+          "snapshot": "v1",
+          "k": 1
+        },
+        "cache_hit": false,
+        "run_kind": "offline_replay",
+        "answer": "实验B超时为5秒。",
+        "citations": [
+          "b03"
+        ],
+        "evidence": [
+          {
+            "id": "b03",
+            "doc_id": "beta",
+            "snapshot": "v1",
+            "page": 2,
+            "text": "实验B timeout 为5秒，与实验A无关。",
+            "tags": [
+              "timeout",
+              "5"
+            ],
+            "block_id": "b03",
+            "locator": {
+              "page": 2,
+              "bbox": null,
+              "reason": "合成文本没有PDF区域坐标"
+            }
+          }
+        ],
+        "locator_status": "valid",
+        "support_status": "not_checked",
+        "judgment_source": "unverified",
+        "locator_judgment_source": "rule",
+        "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+        "actual_scope": [
+          {
+            "doc_id": "beta",
+            "snapshot": "v1"
+          }
+        ],
+        "origin_request_id": "37973547-18c8-4f4b-b412-1836ef6d511d",
+        "trace": [
+          {
+            "stage": "scope_validation",
+            "missing_documents": []
+          },
+          {
+            "stage": "cache_lookup",
+            "key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+            "enabled": true
+          },
+          {
+            "stage": "scoped_ranking",
+            "candidates": [
+              {
+                "id": "b03",
+                "score": 1
+              },
+              {
+                "id": "b05",
+                "score": 0
+              }
+            ],
+            "selected": [
+              "b03"
+            ]
+          },
+          {
+            "stage": "citation_check",
+            "outside": [],
+            "locator_status": "valid"
+          }
+        ],
+        "engine_version": "b-fixed-1",
+        "cache_key": "d647627ef4400ffe19a76d0ee38194d3309b9671613654830c03dae4807e6605",
+        "status": "ok",
+        "elapsed_ms": 0.10585999999079831
+      }
+    },
+    "output": {
+      "request_id": "b6180f3d-faa7-407c-8d2e-ddc7a62054e5",
+      "request": {
+        "query": "timeout request threshold",
+        "doc_ids": [
+          "alpha"
+        ],
+        "snapshot": "v2",
+        "k": 1
+      },
+      "cache_hit": false,
+      "run_kind": "offline_replay",
+      "answer": "请求超时阈值为12秒。",
+      "citations": [
+        "b02"
+      ],
+      "evidence": [
+        {
+          "id": "b02",
+          "doc_id": "alpha",
+          "snapshot": "v2",
+          "page": 1,
+          "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+          "tags": [
+            "timeout",
+            "request",
+            "threshold",
+            "12"
+          ],
+          "block_id": "b02",
+          "locator": {
+            "page": 1,
+            "bbox": null,
+            "reason": "合成文本没有PDF区域坐标"
+          }
+        }
+      ],
+      "locator_status": "valid",
+      "support_status": "not_checked",
+      "judgment_source": "unverified",
+      "locator_judgment_source": "rule",
+      "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+      "actual_scope": [
+        {
+          "doc_id": "alpha",
+          "snapshot": "v2"
+        }
+      ],
+      "origin_request_id": "b6180f3d-faa7-407c-8d2e-ddc7a62054e5",
+      "trace": [
+        {
+          "stage": "scope_validation",
+          "missing_documents": []
+        },
+        {
+          "stage": "cache_lookup",
+          "key": "226959644f845aeb56a8cc67ce799212e3994c6d01235ed1934794f1aa7d9269",
+          "enabled": true
+        },
+        {
+          "stage": "scoped_ranking",
+          "candidates": [
+            {
+              "id": "b02",
+              "score": 3
+            },
+            {
+              "id": "b04",
+              "score": 0
+            },
+            {
+              "id": "b06",
+              "score": 0
+            }
+          ],
+          "selected": [
+            "b02"
+          ]
+        },
+        {
+          "stage": "citation_check",
+          "outside": [],
+          "locator_status": "valid"
+        }
+      ],
+      "engine_version": "b-fixed-1",
+      "cache_key": "226959644f845aeb56a8cc67ce799212e3994c6d01235ed1934794f1aa7d9269",
+      "status": "ok",
+      "elapsed_ms": 0.11070100001120409
+    }
+  }
+]

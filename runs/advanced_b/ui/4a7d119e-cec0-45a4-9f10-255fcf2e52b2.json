@@ -1,0 +1,106 @@
+{
+  "mode": "fixed",
+  "reset": true,
+  "request": {},
+  "draft": {
+    "answer": "请求超时阈值为12秒。",
+    "citations": [
+      "b02"
+    ],
+    "origin": "synthetic_fixture"
+  },
+  "corpus": [
+    {
+      "id": "b01",
+      "doc_id": "alpha",
+      "snapshot": "v1",
+      "page": 1,
+      "text": "实验A timeout request threshold 为30秒。此值仅适用于第一版请求客户端。",
+      "tags": [
+        "timeout",
+        "request",
+        "threshold",
+        "30"
+      ]
+    },
+    {
+      "id": "b02",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 1,
+      "text": "实验A timeout request threshold 改为12秒；此版本未测量GPU执行取消。",
+      "tags": [
+        "timeout",
+        "request",
+        "threshold",
+        "12"
+      ]
+    },
+    {
+      "id": "b03",
+      "doc_id": "beta",
+      "snapshot": "v1",
+      "page": 2,
+      "text": "实验B timeout 为5秒，与实验A无关。",
+      "tags": [
+        "timeout",
+        "5"
+      ]
+    },
+    {
+      "id": "b04",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 2,
+      "text": "客户端取消仅停止本地结果展示；本文没有测量服务端是否释放GPU计算资源。",
+      "tags": [
+        "cancel",
+        "gpu",
+        "resource"
+      ]
+    },
+    {
+      "id": "b05",
+      "doc_id": "beta",
+      "snapshot": "v1",
+      "page": 3,
+      "text": "本页说明数据文档编号为beta，可使用本页定位元数据。",
+      "tags": [
+        "metadata",
+        "beta"
+      ]
+    },
+    {
+      "id": "b06",
+      "doc_id": "alpha",
+      "snapshot": "v2",
+      "page": 3,
+      "text": "本文仅讨论单进程演示，没有对多worker环境做性能测试。",
+      "tags": [
+        "worker",
+        "single",
+        "process"
+      ]
+    }
+  ],
+  "output": {
+    "request_id": "4a7d119e-cec0-45a4-9f10-255fcf2e52b2",
+    "request": {},
+    "cache_hit": false,
+    "run_kind": "offline_replay",
+    "answer": null,
+    "citations": [],
+    "evidence": [],
+    "locator_status": "absent",
+    "support_status": "not_checked",
+    "judgment_source": "unverified",
+    "locator_judgment_source": "rule",
+    "support_reason": "未实现独立语义核验；引用有效不等于支持答案。",
+    "actual_scope": [],
+    "origin_request_id": "4a7d119e-cec0-45a4-9f10-255fcf2e52b2",
+    "trace": [],
+    "engine_version": "b-fixed-1",
+    "status": "invalid_input",
+    "elapsed_ms": 0.02399999721092172
+  }
+}
