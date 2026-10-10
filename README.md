@@ -23,6 +23,8 @@ python B任务/运行.py
 
 检查已有记录：
 
+基础任务的 `--check` 用于原实验环境：它核对原始文件字节及未上传的本地配置，在全新下载目录中不能直接通过。下载后可运行 `python scripts/score_exploration.py` 离线复算答案结果；页面回放、单元测试和分类副本检查不需要该私有配置。
+
 ```powershell
 python 基础任务/运行.py --check
 python B任务/运行.py --check

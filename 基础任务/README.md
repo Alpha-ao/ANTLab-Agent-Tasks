@@ -29,6 +29,8 @@ python 基础任务/运行.py
 
 检查已保存的结果：
 
+以下检查依赖原实验环境的本地配置和原始文件字节；下载仓库后，使用 `python scripts/score_exploration.py` 离线复算答案结果。不要为通过原环境检查上传私有配置。
+
 ```powershell
 python 基础任务/运行.py --check
 ```
