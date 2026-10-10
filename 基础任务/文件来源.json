@@ -2,46 +2,55 @@
   {
     "source": "report-basic-v1.md",
     "copy": "报告/首轮记录.md",
-    "sha256": "3a7c260f0c45e5b1db9bd4251b651a79fc45e84742046d11adbb2f2de57ea69e"
+    "sha256": "ebde9425f8d8a1a24cefb6a5f58d2a0c919cea026cda3b2b4e30e649d742e2c6",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "report-v2.md",
     "copy": "报告/改进记录.md",
-    "sha256": "7255f941a0950d013a5d3105161aa621f77f22558fffc52f1ec862783e6c0696"
+    "sha256": "7255f941a0950d013a5d3105161aa621f77f22558fffc52f1ec862783e6c0696",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "research.md",
     "copy": "资料/阅读记录.md",
-    "sha256": "b5a5546ce6c9b762d19ed895e348d6f1ff1d00262e0e8ec9b9e6994e52b8b60f"
+    "sha256": "b81257649ee51fb0667d7fdacd7bb92ca71f7c89c2771c4326e47c11e20a0fb8",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/results.csv",
     "copy": "结果/首轮逐题结果.csv",
-    "sha256": "eb3ee7a8f0e20e49fded897479cd421db9f2bf4d25c8118666f15bc44f090604"
+    "sha256": "9b35a01fd4ac0382c9a340d0d2753a3b70e2f28bc01b02906e3b55404f1a62c3",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/exploration.csv",
     "copy": "结果/改进逐题结果.csv",
-    "sha256": "fb661094931383bf56882110668b745ffe64d9b89a1de915c629c3557af4c582"
+    "sha256": "b21384f03173e71aa23cee5a25f4c19cab6d070593964a247fcad34b9f4289ca",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/summary.json",
     "copy": "结果/首轮汇总.json",
-    "sha256": "b2fe2e34570acbd85cc382c914dd87c22c5533c01f64b2ddc1810fca7c3ed8ed"
+    "sha256": "e7f08ed55ce8d3f5c38bd4f4d33db29ae3e83dfa3b99fe6d487bdc77b80ee8ae",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/exploration_summary.json",
     "copy": "结果/改进汇总.json",
-    "sha256": "5626d0f7042794ca405dfa8b9f00459104bb54874af52204eb10ad6215f0e21c"
+    "sha256": "32f216b9850c08275d3dcdc8c1a69fe241c63f189b1465fd77432f5079c5561e",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/completion_audit.json",
     "copy": "结果/检查记录.json",
-    "sha256": "22ee3fff7077f3f3519e9d00abe9518d9d588dea163b3a6786872aa15dc2543b"
+    "sha256": "8bfb3fa1563b75f0859c94d6ebf8bf880b2361b18148691958cefedc83455d16",
+    "hash_mode": "CRLF to LF"
   },
   {
     "source": "results/ui-verified.jpg",
     "copy": "结果/页面截图.jpg",
-    "sha256": "1c9ba195b426eb1dbc65a96bbfb0b9949ed4f843c688dd680885b2233db369ed"
+    "sha256": "1c9ba195b426eb1dbc65a96bbfb0b9949ed4f843c688dd680885b2233db369ed",
+    "hash_mode": "raw bytes"
   }
 ]

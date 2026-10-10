@@ -6,6 +6,13 @@ from pathlib import Path
 import shutil
 
 ROOT=Path(__file__).resolve().parents[1]
+
+def digest(path):
+    data=path.read_bytes()
+    if path.suffix in {'.md','.json','.csv'}:
+        data=data.replace(b'\r\n',b'\n')
+    return hashlib.sha256(data).hexdigest()
+
 GROUPS={
     '基础任务':{
         'report-basic-v1.md':'报告/首轮记录.md',
@@ -42,10 +49,11 @@ def main():
             if not args.check:
                 destination.parent.mkdir(parents=True,exist_ok=True)
                 shutil.copyfile(source,destination)
-            sha=hashlib.sha256(source.read_bytes()).hexdigest()
-            if not destination.is_file() or hashlib.sha256(destination.read_bytes()).hexdigest()!=sha:
+            sha=digest(source)
+            if not destination.is_file() or digest(destination)!=sha:
                 raise SystemExit('副本缺失或内容不同：'+str(destination))
-            entries.append({'source':src,'copy':dst,'sha256':sha})
+            entries.append({'source':src,'copy':dst,'sha256':sha,
+                            'hash_mode':'CRLF to LF' if source.suffix in {'.md','.json','.csv'} else 'raw bytes'})
         manifest=ROOT/group/'文件来源.json'
         if args.check:
             if json.loads(manifest.read_text(encoding='utf-8'))!=entries:
