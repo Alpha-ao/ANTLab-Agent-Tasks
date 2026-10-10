@@ -81,11 +81,22 @@ python scripts/check_b_same_symptom.py --label same_review_01
 
 ## 来源与开发记录
 
-本项目从 [Shiina413/ANTLab-Agent-Tasks](https://github.com/Shiina413/ANTLab-Agent-Tasks) Fork，源码基点为 `b028d90f43f44585cf085a3f607516a94f485e88`。保留题包及开发历史，可用以下命令查看当前版本和相对上游的改动：
+本项目从 [Shiina413/ANTLab-Agent-Tasks](https://github.com/Shiina413/ANTLab-Agent-Tasks) Fork，原始题包的版本别名为 `task-base`。保留题包及开发历史，可用以下命令查看当前版本和相对上游的改动：
+
+| 版本别名 | 含义 |
+|---|---|
+| [task-base](https://github.com/Alpha-ao/ANTLab-Agent-Tasks/tree/task-base) | 开始开发时的原始题包 |
+| [basic-v1](https://github.com/Alpha-ao/ANTLab-Agent-Tasks/tree/basic-v1) | 基础任务实现与实验记录 |
+| [b-v1](https://github.com/Alpha-ao/ANTLab-Agent-Tasks/tree/b-v1) | B 题修复及复测记录 |
+
+这些别名是固定的 Git 标签，对应真实历史版本。当前代码查看 `main` 分支。
 
 ```bash
-git rev-parse HEAD
-git diff b028d90f43f44585cf085a3f607516a94f485e88 HEAD
+# 获取版本标签，然后查看相对原始题包的改动
+git fetch origin --tags
+git diff task-base HEAD
 ```
+
+实验日志中的请求编号和文件校验值保留原值，用于追查输入、输出及文件变化。提交表若要求完整 commit SHA，可运行 `git rev-parse HEAD` 获取，不能用版本别名代替。
 
 [整合报告](report.md) · [决定记录](decisions.md) · [AI 使用与复用声明](declaration.md) · [原仓库说明](原仓库说明.md)
