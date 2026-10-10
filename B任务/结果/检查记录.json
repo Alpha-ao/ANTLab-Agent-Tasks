@@ -1,0 +1,40 @@
+{
+  "scope": "B local implementation, experiment and UI; excludes personal GitHub submission and human review",
+  "checks": {
+    "originals_preserved": true,
+    "baseline_failure_retained": true,
+    "verified_implementation_unchanged": true,
+    "all_contract_checks_pass": true,
+    "four_interventions_match_predictions": true,
+    "raw_inputs_outputs_saved": true,
+    "model_freeze_unchanged": true,
+    "same_symptom_sources_unchanged": true,
+    "same_symptom_checks_pass": true,
+    "same_symptom_predictions": true,
+    "same_symptom_identical_start": true,
+    "nine_distinct_first_attempts": true,
+    "paid_inputs_match_freeze": true,
+    "paid_calls_complete": true,
+    "budget_and_call_ids_match": true,
+    "ui_original_stale_version": true,
+    "ui_fixed_current_version": true,
+    "ui_dynamic_rejection": true,
+    "ui_error_and_stale_state_checks": true,
+    "ui_empty_request_logged": true,
+    "linux_actual_runs_pass": true,
+    "verification_linux_review": true,
+    "same_symptom_linux_review": true,
+    "ui_screenshot_saved": true,
+    "required_reports_present": true,
+    "no_credential_patterns": true
+  },
+  "project_cost_upper_cny": 1.093666,
+  "model_requests": 9,
+  "limits": [
+    "offline replay is not model repair",
+    "semantic support remains not_checked",
+    "ambiguous version symptom in model comparison",
+    "single process only",
+    "human review and personal GitHub submission pending"
+  ]
+}

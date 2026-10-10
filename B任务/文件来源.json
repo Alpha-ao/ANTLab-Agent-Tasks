@@ -1,0 +1,47 @@
+[
+  {
+    "source": "results/advanced_b/review-followup.md",
+    "copy": "报告/修正记录.md",
+    "sha256": "5f0398127f0c9b3ca028a0bc6cda03a5e423910797519cb0f272ab63208ce1fd"
+  },
+  {
+    "source": "results/advanced_b/paired.md",
+    "copy": "结果/逐例说明.md",
+    "sha256": "c7ec93e746bc9dcec6dc0a94b1cade932d734e842f56cc54403440ba9b31694f"
+  },
+  {
+    "source": "results/advanced_b/summary.json",
+    "copy": "结果/模型诊断记录.json",
+    "sha256": "df7208d31d1a5baa2576ab468a0bd45f90b940dfc0db6380296b73a2205befa9"
+  },
+  {
+    "source": "runs/advanced_b/same_symptom/summary.json",
+    "copy": "结果/同症状对照.json",
+    "sha256": "012197a68d569ae86e25ae776aa9e3472576088c70edbeaef972e837731a67ff"
+  },
+  {
+    "source": "results/advanced_b/retest-20261009.json",
+    "copy": "结果/最近复测.json",
+    "sha256": "3a9269d03808689368070fc464f3debee22efcf4e6ba1b99acef234eeff9dd70"
+  },
+  {
+    "source": "results/advanced_b/linux-review.json",
+    "copy": "结果/Linux检查.json",
+    "sha256": "33ba12c8f78b033d95f155a10c2e0a621e4cf7ca2cc28c3e0f0575bdd71f2ba9"
+  },
+  {
+    "source": "results/advanced_b/completion_audit.json",
+    "copy": "结果/检查记录.json",
+    "sha256": "7a3fd0194db0f55a89c3da26de4175f58e0c8c85dffd35da20d60c4c0efb5d4e"
+  },
+  {
+    "source": "results/advanced_b/ui-retest-20261009.png",
+    "copy": "结果/页面截图.png",
+    "sha256": "8f191c10384b7d35c4f8bb8a7466a76b5d969527bccfd68b4b2c86ad588afb31"
+  },
+  {
+    "source": "results/advanced_b/ui-retest-20261009.json",
+    "copy": "结果/页面复测记录.json",
+    "sha256": "53c5d4ab5fee97ea8a78538927a49dfd8f950fcb06ed09a7794864c38d51eb3d"
+  }
+]

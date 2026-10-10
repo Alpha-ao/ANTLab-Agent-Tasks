@@ -1,0 +1,25 @@
+{
+  "observations": [
+    {
+      "log": "/api/log/5d504c59-66ce-4e88-b1f6-31b474cdadb6",
+      "pass": true,
+      "test": "original_fault_reproduced"
+    },
+    {
+      "log": "/api/log/947101c4-bca1-43bf-85c8-6411588fd8c8",
+      "pass": true,
+      "test": "fixed_version"
+    },
+    {
+      "log": "/api/log/751e31eb-827b-47d8-8b73-2fa12a15e7f3",
+      "pass": true,
+      "test": "invalid_request_and_stale_clear"
+    },
+    {
+      "pass": true,
+      "test": "invalid_json_hides_old_result"
+    }
+  ],
+  "initial_load_issue": "Initial feedback fetch failed; backend returned HTTP 200, reload after making browser visible recovered. Root cause not established.",
+  "automation_note": "First fill appended to old input; input was then explicitly cleared and verified before testing."
+}
