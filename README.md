@@ -19,7 +19,7 @@
 - **故障修复**：修正缓存未区分资料版本、先截取后筛选导致漏检索，以及把引用可定位当作内容已验证的问题。39 项行为检查和 12 项同症状对照检查通过，具体输入和输出保留在仓库中。
 - **模型诊断**：保留 3 类故障、3 种信息条件下的 9 次模型回答，用于观察外部信息怎样影响诊断。这部分没有测试模型自动修改代码，不能作为自动修复成功率。
 
-详细结果见[整合报告](report.md)、[基础逐题结果](基础任务/结果/)和[B 题逐例说明](B任务/结果/逐例说明.md)。
+详细结果见[整合报告](report.md)、[基础逐题结果](results/exploration.csv)和[B 题逐例说明](results/advanced_b/paired.md)。
 
 ## 快速开始
 
@@ -48,9 +48,6 @@ python -m unittest discover -s tests -v
 
 # 根据已保存的回答复算基础任务结果
 python scripts/score_exploration.py
-
-# 核对分类副本与原文件
-python scripts/organize_results.py --check
 ```
 
 重新执行 B 题行为检查：
@@ -66,14 +63,14 @@ python scripts/check_b_same_symptom.py --label same_review_01
 
 | 目录 | 内容 |
 |---|---|
-| `基础任务/`、`B任务/` | 分类报告、结果、资料和代码索引 |
+| `基础任务/`、`B任务/` | 简要报告、启动入口、代码与实验记录索引 |
 | `基础/`、`进阶/` | 原题、数据与实现代码 |
 | `scripts/`、`web/`、`tests/` | 运行脚本、交互页面与测试 |
 | `runs/` | 实验输入、原始响应和故障记录 |
 | `configs/`、`versions/` | 实验配置与原版代码存档 |
 | `results/` | 逐题评价、汇总和费用记录 |
 
-分类目录中的结果是便于阅读的副本，来源见各目录的 `文件来源.json`。更新结果后，可运行 `python scripts/organize_results.py` 同步副本。文本校验只统一换行符，不忽略其他内容差异。
+报告和结果只保留一份，两个任务目录直接链接到原文件。原题包、冻结配置与原始记录保留，用于核对来源和复查实验。
 
 ## 已知限制
 
@@ -99,4 +96,4 @@ git diff task-base HEAD
 
 实验日志中的请求编号和文件校验值保留原值，用于追查输入、输出及文件变化。提交表若要求完整 commit SHA，可运行 `git rev-parse HEAD` 获取，不能用版本别名代替。
 
-[整合报告](report.md) · [决定记录](decisions.md) · [AI 使用与复用声明](declaration.md) · [原仓库说明](原仓库说明.md)
+[整合报告](report.md) · [决定记录](decisions.md) · [AI 使用与复用声明](declaration.md) · [原仓库说明](https://github.com/Alpha-ao/ANTLab-Agent-Tasks/blob/task-base/README.md)
